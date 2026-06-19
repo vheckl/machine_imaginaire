@@ -236,9 +236,12 @@ html,body { width:100%;height:100%;background:var(--black);
 .game1-btn:disabled { opacity:0.3;cursor:default; }
 .game1-btn-icon { font-size:18px;line-height:1; }
 .game1-grid-col { display:flex;flex-direction:column;align-items:center;gap:6px; }
-.game1-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:2px;width:min(200px,38vw); }
+.game1-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:2px;width:min(200px,38vw);
+  aspect-ratio:1; }
 .game1-cell { aspect-ratio:1;background:rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.07);
-  display:flex;align-items:center;justify-content:center;transition:background 0.2s; }
+  display:flex;align-items:center;justify-content:center;transition:background 0.2s;
+  position:relative;min-width:0;min-height:0;overflow:hidden; }
+.game1-cell canvas { position:absolute;top:0;left:0;width:100%;height:100%;display:block; }
 .game1-cell.filled { background:var(--accent-lt,#fdecea); }
 .game1-cell.current-cell { border-color:var(--accent1);background:rgba(243,63,44,0.06); }
 .game1-grid-label { font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.1em;
@@ -382,10 +385,10 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .rand-img-wrap {
   display:flex;flex-direction:column;align-items:center;gap:6px;
-  width:min(160px,26vw);
+  width:min(300px,40vw);
 }
 .rand-img-box {
-  width:100%;min-height:180px;max-height:300px;
+  width:100%;min-height:160px;max-height:340px;
   background:rgba(2,135,76,0.05);
   border:1px solid rgba(2,135,76,0.2);
   display:flex;align-items:center;justify-content:center;
@@ -1376,7 +1379,7 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .od-inspire-work { display:flex;flex-direction:column;align-items:center;gap:6px; }
 .od-inspire-img-box {
-  width:min(300px,42vw,34vh);height:min(300px,42vw,34vh);
+  width:min(440px,70vw,46vh);height:min(440px,70vw,46vh);
   border:1px solid rgba(0,0,0,0.12);background:#fff;
   display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;
   transition:opacity 0.4s;
@@ -2430,7 +2433,7 @@ function game1Answer(choice){
       cell.classList.remove('current-cell');cell.classList.add('filled');
       if(choice==='mark'){
         const cv=document.createElement('canvas');
-        const sz=cell.offsetWidth||34;cv.width=sz;cv.height=sz;
+        const sz=60;cv.width=sz;cv.height=sz;
         const ctx=cv.getContext('2d');
         ctx.beginPath();ctx.arc(sz/2,sz/2,sz*0.32,0,Math.PI*2);
         ctx.fillStyle='#f33f2c';ctx.fill();
@@ -2469,8 +2472,7 @@ function finishGame1(){
   unlockGallerySlot(0,off);
   window._g1Canvas=off;
   // Score line
-  const scoreMsg=g1Wrong===0?'Perfect execution — zero corrections.':g1Wrong<=3?'Clean run — '+g1Wrong+' correction'+(g1Wrong===1?'':' s')+'.':'The algorithm required '+g1Wrong+' corrections.';
-  const postLines=[...G1_POST];postLines[2]=postLines[2]+' '+scoreMsg;
+  const postLines=[...G1_POST];
   g1Phase='post';g1PostIdx=0;
   document.getElementById('g1-play-card').style.display='none';
   document.getElementById('g1-post-card').style.display='';
@@ -2781,8 +2783,7 @@ function finishInclGame(){
   document.getElementById('incl-play-card').style.display='none';
   document.getElementById('incl-post-card').style.display='';
   const _rb2=document.getElementById('incl-roll-btn');if(_rb2)_rb2.disabled=true;
-  const scoreMsg=inclWrong===0?'Perfect execution.':inclWrong<=3?inclWrong+' correction'+(inclWrong===1?'':' s')+'.':'The rule required '+inclWrong+' corrections.';
-  const postLines=[...INCL_POST];postLines[1]=postLines[1]+' '+scoreMsg;
+  const postLines=[...INCL_POST];
   window._inclPostLines=postLines;
   renderInclPost();
 }
@@ -3671,12 +3672,15 @@ const MOLNAR_WORKS = [
 // Which narration lines show inspiration, and what caption + which works.
 // Keyed by odVoiceIdx. (OD_VOICE has 4 lines, indices 0–3.)
 const OD_INSPIRE_BY_LINE = {
-  1: { eyebrow:'Vera Molnár — "I love order, but I can\u2019t stand it"',
-       works:[0,1],
-       caption:'Interruptions (1968) and (Des)Ordres (1974): a strict structure, then a rule that disturbs it. The order is never destroyed — only loosened, just enough to come alive.' },
-  2: { eyebrow:'Vera Molnár — controlled deviation',
-       works:[1,2],
-       caption:'The disturbance is never arbitrary. How much, and where it falls, is decided by a rule — exactly what you are about to set yourself.' },
+  1: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
+       works:[0],
+       caption:'A field of lines, then some rotated and erased at random. The order is disturbed — never destroyed — and that is what makes it come alive.' },
+  2: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
+       works:[1],
+       caption:'Concentric squares, slightly displaced. The disturbance is never arbitrary: how much, and where it falls, is decided by a rule.' },
+  3: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
+       works:[2],
+       caption:'Order loosened by hand. This is the territory you are about to enter — finding the exact amount of disorder that feels alive.' },
 };
 
 function odBuildInspireWork(workIdx) {
