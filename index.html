@@ -385,11 +385,11 @@ html,body { width:100%;height:100%;background:var(--black);
   width:min(160px,26vw);
 }
 .rand-img-box {
-  width:100%;aspect-ratio:3/4;
-  background:rgba(0,117,184,0.05);
-  border:1px solid rgba(0,117,184,0.2);
+  width:100%;min-height:180px;max-height:300px;
+  background:rgba(2,135,76,0.05);
+  border:1px solid rgba(2,135,76,0.2);
   display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
+  overflow:hidden;padding:8px;
 }
 .rand-img-box img {
   width:100%;height:100%;object-fit:cover;
@@ -1177,9 +1177,13 @@ html,body { width:100%;height:100%;background:var(--black);
   gap:18px;padding:8px 14px;z-index:5;overflow:hidden;
 }
 .od-params {
-  display:flex;flex-direction:column;gap:9px;
-  width:min(252px,40vw);flex-shrink:0;overflow-y:auto;height:100%;padding-right:3px;
+  display:flex;flex-direction:row;gap:16px;align-items:flex-start;
+  flex-shrink:0;overflow-y:auto;height:100%;padding-right:3px;
 }
+.od-params-col {
+  display:flex;flex-direction:column;gap:9px;width:min(216px,30vw);
+}
+.od-params-col .od-title { margin-bottom:2px; }
 .od-params::-webkit-scrollbar{width:3px;}
 .od-params::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:2px;}
 .od-title {
@@ -1199,6 +1203,9 @@ html,body { width:100%;height:100%;background:var(--black);
 .od-master-lbl span { color:#0a0a0a; }
 .od-master-slider {
   width:100%;height:6px;cursor:pointer;accent-color:var(--accent2,#0047ad);
+}
+.od-mini-slider {
+  width:100%;height:4px;cursor:pointer;accent-color:var(--accent2,#0047ad);
 }
 .od-master-ends {
   display:flex;justify-content:space-between;
@@ -1228,6 +1235,15 @@ html,body { width:100%;height:100%;background:var(--black);
 .od-btn.active { border-color:var(--accent2,#0047ad);border-width:2px;
   background:var(--accent-lt,#fffde7);color:var(--black); }
 
+.od-rule-explain {
+  font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:300;font-style:italic;
+  color:rgba(0,0,0,0.45);line-height:1.4;margin-bottom:2px;
+}
+.od-rule-btn span {
+  display:block;margin-top:3px;font-size:8.5px;font-weight:300;font-style:normal;
+  color:rgba(0,0,0,0.4);line-height:1.35;
+}
+.od-rule-btn.active span { color:rgba(0,0,0,0.55); }
 .od-rule-btn {
   padding:6px 9px;border:1.5px solid rgba(0,0,0,0.12);background:#fff;cursor:pointer;
   text-align:left;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:300;
@@ -1316,14 +1332,14 @@ html,body { width:100%;height:100%;background:var(--black);
 .appr-work { display:flex;flex-direction:column;align-items:center;gap:8px; }
 .appr-work canvas, .appr-work img {
   display:block;border:1px solid rgba(0,0,0,0.12);background:#fff;
-  width:min(340px,80vw);height:min(340px,80vw);object-fit:contain;
+  width:min(440px,86vw);height:min(440px,86vw);object-fit:contain;
 }
 .appr-work-cap {
   font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.1em;
   text-transform:uppercase;color:rgba(0,0,0,0.4);text-align:center;max-width:340px;line-height:1.5;
 }
 .appr-molnar-placeholder {
-  width:min(340px,80vw);height:min(340px,80vw);
+  width:min(440px,86vw);height:min(440px,86vw);
   border:1px dashed rgba(0,0,0,0.2);background:rgba(0,0,0,0.02);
   display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;
 }
@@ -1346,9 +1362,9 @@ html,body { width:100%;height:100%;background:var(--black);
 
 /* ════ Molnár inspiration (during intro narration) ════ */
 .od-inspire {
-  position:absolute;top:60px;left:0;right:0;bottom:200px;
+  position:absolute;top:46px;left:0;right:0;bottom:188px;
   display:none;flex-direction:column;align-items:center;justify-content:center;
-  gap:14px;padding:16px;z-index:6;
+  gap:12px;padding:12px;z-index:6;overflow:hidden;
 }
 .od-inspire.show { display:flex; }
 .od-inspire-eyebrow {
@@ -1360,7 +1376,7 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .od-inspire-work { display:flex;flex-direction:column;align-items:center;gap:6px; }
 .od-inspire-img-box {
-  width:min(220px,38vw);height:min(220px,38vw);
+  width:min(300px,42vw,34vh);height:min(300px,42vw,34vh);
   border:1px solid rgba(0,0,0,0.12);background:#fff;
   display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;
   transition:opacity 0.4s;
@@ -1405,9 +1421,9 @@ html,body { width:100%;height:100%;background:var(--black);
   text-align:center;max-width:480px;line-height:1.55;margin-bottom:28px;
 }
 .mref-works { display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:28px; }
-.mref-work { display:flex;flex-direction:column;align-items:center;gap:10px;width:230px; }
+.mref-work { display:flex;flex-direction:column;align-items:center;gap:10px;width:290px; }
 .mref-img-box {
-  width:230px;height:230px;border:1px solid rgba(0,0,0,0.12);background:#fff;
+  width:290px;height:290px;border:1px solid rgba(0,0,0,0.12);background:#fff;
   display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
 }
 .mref-img { width:100%;height:100%;object-fit:contain; }
@@ -1725,7 +1741,7 @@ html,body { width:100%;height:100%;background:var(--black);
       <div class="rand-image-pair" id="rand-image-pair">
         <div class="rand-img-wrap">
           <div class="rand-img-box" id="rand-img-book">
-            <img src="images/rand-book.jpg" alt="RAND, A Million Random Digits, 1955" style="width:100%;height:100%;object-fit:cover;display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"/>
+            <img src="images/rand-book.jpg" alt="RAND, A Million Random Digits, 1955" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"/>
             <div class="rand-img-placeholder">
               <div class="rand-img-placeholder-lbl">RAND Corporation<br>A Million Random Digits<br>1955<br>[name: rand-book.jpg]</div>
             </div>
@@ -1734,7 +1750,7 @@ html,body { width:100%;height:100%;background:var(--black);
         </div>
         <div class="rand-img-wrap">
           <div class="rand-img-box" id="rand-img-phone">
-            <img src="images/phone-directory.jpg" alt="Telephone directory" style="width:100%;height:100%;object-fit:cover;display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"/>
+            <img src="images/phone-directory.jpg" alt="Telephone directory" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"/>
             <div class="rand-img-placeholder">
               <div class="rand-img-placeholder-lbl">Phone directory<br>c. 1960s<br>[name: phone-directory.jpg]</div>
             </div>
@@ -1903,7 +1919,7 @@ html,body { width:100%;height:100%;background:var(--black);
             <span style="font-size:8px;color:rgba(0,117,184,0.6);">[ insert the finished artwork here —<br>set src on #artwork-img ]</span>
           </div>
         </div>
-        <img id="artwork-img" class="artwork-img" src="" alt="Vera Molnár, Inclinaisons" style="display:none;"/>
+        <img id="artwork-img" class="artwork-img" src="images/inclinaisons-1971.jpg" alt="Vera Molnár, Inclinaisons" style="display:none;object-fit:contain;" onerror="this.dataset.failed='1';"/>
         <div class="artwork-caption" style="color:rgba(0,0,0,0.4);">Vera Molnár — Inclinaisons, c. 1971</div>
       </div>
     </div>
@@ -1946,6 +1962,8 @@ html,body { width:100%;height:100%;background:var(--black);
       <!-- LEFT: controls -->
       <div class="od-params">
         <div class="od-title">Set the order — then rule how it breaks</div>
+        <div class="od-params-col">
+
 
         <!-- THE master slider -->
         <div class="od-master">
@@ -1969,11 +1987,12 @@ html,body { width:100%;height:100%;background:var(--black);
         <!-- Disturbance rule (distribution) -->
         <div class="od-block">
           <div class="od-lbl">How the disturbance spreads</div>
+          <div class="od-rule-explain">The slider sets how much disturbance there is. This sets <em>where</em> it falls across the grid.</div>
           <div class="od-col" id="od-rule-btns">
-            <button class="od-rule-btn active" onclick="odSetRule('uniform',this)">Uniform — every cell, equally</button>
-            <button class="od-rule-btn" onclick="odSetRule('rows',this)">Progressive — grows row by row</button>
-            <button class="od-rule-btn" onclick="odSetRule('center',this)">Radial — grows from the centre</button>
-            <button class="od-rule-btn" onclick="odSetRule('edges',this)">Inverse — calm centre, wild edges</button>
+            <button class="od-rule-btn active" onclick="odSetRule('uniform',this)">Uniform<span>Every cell is disturbed by the same amount.</span></button>
+            <button class="od-rule-btn" onclick="odSetRule('rows',this)">Progressive<span>Calm at the top, strongest at the bottom — grows row by row.</span></button>
+            <button class="od-rule-btn" onclick="odSetRule('center',this)">Radial<span>Strongest in the middle, fading outward to calm edges.</span></button>
+            <button class="od-rule-btn" onclick="odSetRule('edges',this)">Inverse<span>Calm in the middle, wildest at the edges.</span></button>
           </div>
         </div>
 
@@ -2003,17 +2022,55 @@ html,body { width:100%;height:100%;background:var(--black);
           </div>
         </div>
 
-        <!-- Colour -->
+                </div>
+        <div class="od-params-col">
+<!-- Element colour -->
         <div class="od-block">
-          <div class="od-lbl">Colour</div>
+          <div class="od-lbl">Element colour</div>
           <div class="od-row od-colors" id="od-col-btns">
             <button class="od-col-btn active" onclick="odSetColor('#0a0a0a',this)" style="background:#0a0a0a"></button>
             <button class="od-col-btn" onclick="odSetColor('#f33f2c',this)" style="background:#f33f2c"></button>
             <button class="od-col-btn" onclick="odSetColor('#0047ad',this)" style="background:#0047ad"></button>
             <button class="od-col-btn" onclick="odSetColor('#02874c',this)" style="background:#02874c"></button>
-            <button class="od-col-btn" onclick="odSetColor('#02874c',this)" style="background:#02874c"></button>
+            <button class="od-col-btn" onclick="odSetColor('#0075b8',this)" style="background:#0075b8"></button>
             <button class="od-col-btn" onclick="odSetColor('#b74c97',this)" style="background:#b74c97"></button>
+            <button class="od-col-btn" onclick="odSetColor('#f8e106',this)" style="background:#f8e106;border-color:#ccc"></button>
           </div>
+        </div>
+
+        <!-- Background colour -->
+        <div class="od-block">
+          <div class="od-lbl">Background colour</div>
+          <div class="od-row od-colors" id="od-bg-btns">
+            <button class="od-col-btn active" onclick="odSetBgColor('#ffffff',this)" style="background:#fff;border-color:#ccc"></button>
+            <button class="od-col-btn" onclick="odSetBgColor('#0a0a0a',this)" style="background:#0a0a0a"></button>
+            <button class="od-col-btn" onclick="odSetBgColor('#f33f2c',this)" style="background:#f33f2c"></button>
+            <button class="od-col-btn" onclick="odSetBgColor('#0047ad',this)" style="background:#0047ad"></button>
+            <button class="od-col-btn" onclick="odSetBgColor('#02874c',this)" style="background:#02874c"></button>
+            <button class="od-col-btn" onclick="odSetBgColor('#f8e106',this)" style="background:#f8e106;border-color:#ccc"></button>
+            <button class="od-col-btn" onclick="odSetBgColor('#b74c97',this)" style="background:#b74c97"></button>
+          </div>
+        </div>
+
+        <!-- Fill / outline -->
+        <div class="od-block">
+          <div class="od-lbl">Form</div>
+          <div class="od-row" id="od-fill-btns">
+            <button class="od-btn active" onclick="odSetFillMode('filled',this)">Filled</button>
+            <button class="od-btn" onclick="odSetFillMode('outline',this)">Outline</button>
+          </div>
+        </div>
+
+        <!-- Stroke thickness -->
+        <div class="od-block">
+          <div class="od-lbl">Stroke / outline thickness — <span id="od-strokew-lbl">2</span> px</div>
+          <input type="range" min="1" max="12" value="2" step="1" class="od-mini-slider" id="od-strokew" oninput="odSetStrokeW(this.value)"/>
+        </div>
+
+        <!-- Element size -->
+        <div class="od-block">
+          <div class="od-lbl">Element size — <span id="od-scale-lbl">100</span>%</div>
+          <input type="range" min="30" max="160" value="100" step="5" class="od-mini-slider" id="od-scale" oninput="odSetBaseScale(this.value)"/>
         </div>
 
         <!-- Seed / re-roll -->
@@ -2021,7 +2078,8 @@ html,body { width:100%;height:100%;background:var(--black);
           <div class="od-lbl">The disturbance is itself governed by a rule</div>
           <button class="od-seed-btn" onclick="odReseed()">↻ New disturbance seed</button>
         </div>
-      </div>
+              </div>
+</div>
 
       <!-- RIGHT: canvas + save -->
       <div class="od-canvas-side">
@@ -2228,8 +2286,8 @@ function renderVoiceLine(){
   document.getElementById('voice-tap').textContent=voiceIdx===VOICE_LINES.length-1?'click to continue →':'click to continue';
   const b=document.getElementById('voice-back-btn');if(b)b.disabled=voiceIdx===0;
   setSectionProg('s1-prog-fill','s1-prog-label',voiceIdx+1,VOICE_LINES.length);
-  if(voiceIdx<=11){const el=document.getElementById('voice-visual-inner');if(el&&el.dataset.showing!=='p'){el.innerHTML='<img src="images/molnar-portrait.jpg" style="width:100%;height:100%;object-fit:contain;display:block;" onerror="this.parentNode.innerHTML=PORTRAIT_FALLBACK;"/>';el.dataset.showing='p';}}
-  else{const el=document.getElementById('voice-visual-inner');if(el&&el.dataset.showing!=='c'){el.innerHTML='<img src="images/ibm-2250.jpg" style="width:100%;height:100%;object-fit:contain;display:block;" onerror="this.parentNode.innerHTML=COMPUTER_FALLBACK;"/>';el.dataset.showing='c';}}
+  if(voiceIdx<=11){const el=document.getElementById('voice-visual-inner');if(el&&el.dataset.showing!=='p'){el.innerHTML='<img src="images/molnar-portrait.jpg" style="width:100%;height:auto;max-height:42vh;object-fit:contain;display:block;" onerror="this.parentNode.innerHTML=PORTRAIT_FALLBACK;"/>';el.dataset.showing='p';}}
+  else{const el=document.getElementById('voice-visual-inner');if(el&&el.dataset.showing!=='c'){el.innerHTML='<img src="images/ibm-2250.jpg" style="width:100%;height:auto;max-height:42vh;object-fit:contain;display:block;" onerror="this.parentNode.innerHTML=COMPUTER_FALLBACK;"/>';el.dataset.showing='c';}}
 }
 function advanceVoice(){if(voiceIdx<VOICE_LINES.length-1){voiceIdx++;renderVoiceLine();}else{startAlgoIntro();}}
 function goBackVoice(e){e.stopPropagation();if(voiceIdx>0){voiceIdx--;renderVoiceLine();}}
@@ -2763,7 +2821,7 @@ function startArtworkReveal(){
   setTimeout(()=>{
     const img=document.getElementById('artwork-img');
     const ph=document.getElementById('artwork-placeholder');
-    if(img&&img.src&&img.src!==window.location.href&&img.src!==''){ph.style.display='none';img.style.display='block';setTimeout(()=>img.classList.add('visible'),50);}
+    if(img&&img.src&&img.src!==window.location.href&&img.src!==''&&img.dataset.failed!=='1'&&img.complete&&img.naturalWidth>0){ph.style.display='none';img.style.display='block';setTimeout(()=>img.classList.add('visible'),50);}
   },400);
   renderArtworkVoice();
 }
@@ -3211,7 +3269,11 @@ const odState = {
   rule: 'uniform',      // uniform | rows | center | edges
   elem: 'square',       // square | line | circle
   gridN: 10,
-  color: '#0a0a0a',
+  color: '#0a0a0a',     // element colour
+  bgColor: '#ffffff',   // background colour
+  fillMode: 'filled',   // filled | outline
+  strokeW: 2,           // stroke / outline thickness
+  baseScale: 1.0,       // base element size multiplier
   seed: 12345,
 };
 
@@ -3274,7 +3336,7 @@ function odRevealGame() {
   if(area) area.style.display = 'flex';
   const insp = document.getElementById('od-inspire'); if(insp) insp.classList.remove('show');
   // Replace the narration box content with a short studio prompt
-  document.getElementById('od-voice-text').textContent = "The studio is yours. Drag the disturbance slider slowly and watch the order break. When you find a version you like, save it — you can download each one as a PDF to keep or print.";
+  document.getElementById('od-voice-text').textContent = "The studio is yours — disturb, save, and download what you like.";
   document.getElementById('od-voice-tap').textContent = 'keep exploring';
   const b = document.getElementById('od-back-btn'); if(b) b.style.visibility = 'hidden';
   setSectionProg('s6-prog-fill','s6-prog-label', OD_VOICE.length, OD_VOICE.length);
@@ -3342,6 +3404,29 @@ function odSetColor(c, btn) {
   btn.classList.add('active');
   odRender();
 }
+function odSetBgColor(c, btn) {
+  odState.bgColor = c;
+  document.querySelectorAll('#od-bg-btns .od-col-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  odRender();
+}
+function odSetFillMode(mode, btn) {
+  odState.fillMode = mode;
+  document.querySelectorAll('#od-fill-btns .od-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  odRender();
+}
+function odSetStrokeW(v) {
+  odState.strokeW = +v;
+  const lbl = document.getElementById('od-strokew-lbl'); if(lbl) lbl.textContent = v;
+  odRender();
+}
+function odSetBaseScale(v) {
+  odState.baseScale = +v / 100;
+  const lbl = document.getElementById('od-scale-lbl'); if(lbl) lbl.textContent = v;
+  odRender();
+}
+
 function odReseed() {
   odState.seed = Math.floor(Math.random() * 100000);
   odRender();
@@ -3374,20 +3459,26 @@ function odLocalStrength(row, col) {
 // ── Draw one element with deviation applied ──
 function odDrawElement(ctx, cx, cy, elem, color, size, angleRad, scale) {
   ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineCap = 'round';
-  const s = size * scale;
+  const s = size * scale * (odState.baseScale || 1);
+  const outline = (odState.fillMode === 'outline');
+  const lw = Math.max(0.5, odState.strokeW || 2);
   ctx.save();
   ctx.translate(cx, cy);
   if(elem === 'square') {
     ctx.rotate(angleRad);
     const h = s * 0.4;
-    ctx.fillRect(-h, -h, h*2, h*2);
+    if(outline) { ctx.lineWidth = lw; ctx.strokeRect(-h, -h, h*2, h*2); }
+    else { ctx.fillRect(-h, -h, h*2, h*2); }
   } else if(elem === 'line') {
     ctx.rotate(angleRad);
-    ctx.lineWidth = Math.max(1.5, s*0.1);
+    // A line is always a stroke; thickness follows the stroke control
+    ctx.lineWidth = lw;
     ctx.beginPath(); ctx.moveTo(0, -s*0.45); ctx.lineTo(0, s*0.45); ctx.stroke();
   } else if(elem === 'circle') {
     // Rotation does not affect a circle — only position & size matter
-    ctx.beginPath(); ctx.arc(0, 0, s*0.4, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(0, 0, s*0.4, 0, Math.PI*2);
+    if(outline) { ctx.lineWidth = lw; ctx.stroke(); }
+    else { ctx.fill(); }
   }
   ctx.restore();
 }
@@ -3399,7 +3490,7 @@ function odRender() {
   const S = cv.width;
   const N = odState.gridN;
   const cs = S / N;
-  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, S, S);
+  ctx.fillStyle = odState.bgColor || '#fff'; ctx.fillRect(0, 0, S, S);
 
   for(let row=0; row<N; row++) {
     for(let col=0; col<N; col++) {
