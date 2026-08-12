@@ -376,8 +376,8 @@ const SKETCH_STEPS=[
   {text:"Look at the writing in the top right, in my own hand: 'blancs 20%, 8 inclinaisons 10% pour chaque.' It means: leave 20 percent of the cells blank, and use eight possible line orientations, each appearing 10 percent of the time. Those two sentences are the complete instructions. Nothing else decides the image."},
   {text:"Beneath the writing is a compass wheel. I drew the eight orientations and numbered them 1 through 8 — from horizontal, turning step by step toward vertical. Each direction was given exactly the same chance. I did not let any angle dominate, because the moment one does, it becomes a preference — and preference is exactly what I was trying to remove."},
   {text:"And below the compass is the lookup table. This is the heart of it: a number comes in, and the table tells you which of the eight orientations to draw. No interpretation. The number maps to an angle, the angle goes in the cell. That mechanical step — number to angle — is the whole algorithm, written out by hand before any computer touched it."},
-  {text:"But to run it, I needed a number for every single cell — and not just any numbers. I needed numbers I could not predict, could not nudge, could not unconsciously choose. Genuine randomness, from outside myself."},
-  {text:"This was harder than it sounds. In the 1960s you could not simply ask for a random number. Scientists used printed books of them — the RAND Corporation famously published one million random digits in 1955. My colleague Morellet used the phone book. Any sequence nobody had arranged on purpose would serve. You will see more about this in a moment."},
+  {text:"But to run it, I needed a number for every single cell — genuine randomness, from outside myself. Not something I calculated."},
+  {text:"That turned out to be harder than it sounds. In the 1960s you could not simply ask for one. I found two very different sources — I'll show you both in a moment."},
   {text:"Then the execution itself: one number, one decision, one line. An arrow from the table to the grid. No hesitation, no stepping back to reconsider. The algorithm does not have second thoughts — and while I followed it, neither could I."},
   {text:"I found this liberating, not limiting. I had spent years trying to escape my own taste — the habits I learned in art school, the reflexes of my culture. The rule let me make marks I would never have chosen, and discover they were beautiful anyway."},
   {text:"Cell by cell, the grid filled slowly. What emerged was something I could not have pictured in advance — and yet I had specified every part of how it was made. Both things are true at once. That is the puzzle I spent my life inside."},
@@ -743,10 +743,6 @@ window.addEventListener('load',()=>{
   if(window._buildGallerySlots_v8) {
     window.buildGallerySlots = window._buildGallerySlots_v8;
   }
-  // Patch RAND_LINES if available
-  if(typeof RAND_LINES !== 'undefined' && RAND_LINES.length >= 7) {
-    RAND_LINES[6] = "This is why we are using dice in this game — a convention we invented to make the process tangible. We do not know exactly how Molnár sourced her numbers. What matters is the principle: something external to the algorithm, something it cannot predict.";
-  }
 });
 
 
@@ -762,7 +758,7 @@ const RAND_LINES = [
   "My colleague François Morellet had a cheaper solution. He used a telephone directory. Any sequence of digits that nobody had arranged on purpose would do.",
   "What both methods share: the numbers came from outside the system. No formula. No pattern. Pure external input.",
   "A computer cannot do this. What computers call 'random' is a formula — a calculation that produces numbers which look unpredictable but follow a precise sequence. Give it the same starting point and it will produce exactly the same numbers every time.",
-  "This is why we are using dice. Two dice, faces 0 to 9. Each roll sits outside the algorithm — a physical event it cannot anticipate. For once, the machine has to wait for us.",
+  "This is why we are using dice in this game — a convention we invented to make the process tangible. We do not know exactly how Molnár sourced her numbers. What matters is the principle: something external to the algorithm, something it cannot predict.",
 ];
 
 let randSceneIdx = 0;
@@ -1101,14 +1097,6 @@ window._buildGallerySlots_v8 = buildGallerySlots;
 // This is already handled in v7's inclSelectOrientation reset block.
 // The only additional fix: after blank confirm, ensure dice are clickable again.
 // That's already the case since we removed the button — dice onclick always works.
-
-// ── Patch RAND narration line 7 to note dice are our invention ──
-// We patch this in JS since the array is defined in v7
-if(typeof RAND_LINES !== 'undefined') {
-  RAND_LINES[6] = "This is why we are using dice in this game — a convention we invented to make the process tangible. We do not know exactly how Molnár sourced her numbers. What matters is the principle: something external to the algorithm, something it cannot predict.";
-}
-
-
 
 // ═══ V13: Order & Disturbance ═══
 // ════════════════════════════════════════════
