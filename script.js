@@ -47,6 +47,15 @@ function setSectionProg(fillId,labelId,current,total){
   if(l)l.textContent=current+' / '+total;
 }
 
+// On-demand rule reminder — toggles a small panel restating the current game's rule
+function toggleRulePanel(id){
+  const panel=document.getElementById(id+'-rule-panel');
+  const btn=document.getElementById(id+'-rule-btn');
+  if(!panel||!btn)return;
+  const open=panel.classList.toggle('open');
+  btn.classList.toggle('open',open);
+}
+
 // Gallery
 function openGallery(){buildGallerySlots();document.getElementById('gallery-overlay').classList.add('open');}
 function closeGallery(){document.getElementById('gallery-overlay').classList.remove('open');}
@@ -221,7 +230,7 @@ function handleAlgoIntroClick(e){if(e&&e.target.tagName==='BUTTON')return;if(alg
 function goBackAlgo(e){e.stopPropagation();if(algoIdx>0){algoIdx--;renderAlgoStep();}}
 
 // ── GAME 1 ──
-const G1_PRE=["Here is a rule: if the number is odd — place a mark. If the number is even — leave the cell empty.","Twenty-five numbers. Twenty-five decisions. Follow the rule exactly."];
+const G1_PRE=["Here is a rule: if the number is odd — place a mark. If the number is even — leave the cell empty.","You don't need to hold that in your head — the rule stays on screen the whole time you're working.","Twenty-five numbers. Twenty-five decisions. Follow the rule exactly."];
 const G1_POST=["You just executed a program.","The rule existed before you picked up the pencil. The result followed from it completely.","This is where I started — long before I had access to a computer. The algorithm on paper, myself as the processor."];
 let g1PreIdx=0,g1PostIdx=0,g1CellIdx=0,g1Numbers=[],g1Results=Array(25).fill(null),g1Wrong=0,g1Correct=0,g1Phase='pre';
 
@@ -244,6 +253,8 @@ function startGame1(){
   document.getElementById('game1-btn-empty').disabled=true;
   document.getElementById('game1-current-num').textContent='?';
   document.getElementById('game1-current-num').className='game1-num waiting';
+  const rp=document.getElementById('g1-rule-panel'); if(rp) rp.classList.remove('open');
+  const rb=document.getElementById('g1-rule-btn'); if(rb) rb.classList.remove('open');
   renderG1Pre();
 }
 
@@ -413,7 +424,7 @@ function advanceSketch(){if(sketchIdx<SKETCH_STEPS.length-1){sketchIdx++;renderS
 function goBackSketch(e){e.stopPropagation();if(sketchIdx>0){sketchIdx--;renderSketchStep();}}
 
 // ── INCLINAISONS GAME (S4) ──
-const INCL_PRE=["A number will appear after you roll. Consult the lookup table. Find which range it falls in. Select the corresponding orientation on the right.","If the number falls between 81 and 00 — the cell is blank. Press the confirm button. That emptiness is also part of the rule.","Roll the dice to generate your first number."];
+const INCL_PRE=["A number will appear after you roll. Consult the lookup table. Find which range it falls in. Select the corresponding orientation on the right.","You don't need to memorize the table, either — it stays open beside the grid for as long as you need it.","If the number falls between 81 and 00 — the cell is blank. Press the confirm button. That emptiness is also part of the rule.","Roll the dice to generate your first number."];
 const INCL_POST=["You executed the algorithm. The composition is yours — but it is also not yours.","Look at what the rule produced. The distribution is almost even. Not because you controlled it — because the rule guaranteed it."];
 let inclPreIdx=0,inclPostIdx=0,inclCellIdx=0,inclResults=Array(25).fill(null),inclWrong=0,inclCorrect=0,inclPhase='pre';
 let inclDiceAnimating=false,inclCurrentDice=[null,null];
@@ -520,6 +531,8 @@ function startInclGame(){
   document.getElementById('incl-pre-card').style.display='';
   document.getElementById('incl-play-card').style.display='none';
   document.getElementById('incl-post-card').style.display='none';
+  const rp=document.getElementById('incl-rule-panel'); if(rp) rp.classList.remove('open');
+  const rb=document.getElementById('incl-rule-btn'); if(rb) rb.classList.remove('open');
   renderInclPre();
 }
 
@@ -1130,6 +1143,7 @@ let odVersions = [];
 
 const OD_VOICE = [
   "In the first games you followed strict rules — odd or even, a number to a direction. The rule decided everything. The result was pure order.",
+  "And you won't need to memorize this one either — every choice you make here stays visible and adjustable while you work.",
   "But pure order is dead. A perfect grid says nothing. My real work began when I asked: what if I disturb the order — not by accident, but by another rule?",
   "Start from a perfect grid where every element is identical. Then introduce deviation — and decide how much, and where it falls. The disturbance itself obeys a rule you choose.",
   "I was never looking for chaos. I was looking for the exact moment order becomes alive. Now it is your turn to find it."
@@ -1155,6 +1169,8 @@ function startFreeComp() {
   const area = document.getElementById('od-area');
   if(area) area.style.display = 'none';
   const bb=document.getElementById('od-back-btn'); if(bb) bb.style.visibility='visible';
+  const rb=document.getElementById('od-rule-btn'); if(rb) rb.style.display='none';
+  const rp=document.getElementById('od-rule-panel'); if(rp) rp.classList.remove('open');
   odRenderVoice();
   odRender();
 }
@@ -1187,6 +1203,7 @@ function odRevealGame() {
   document.getElementById('od-voice-text').textContent = "The studio is yours — disturb, save, and download what you like.";
   document.getElementById('od-voice-tap').textContent = 'keep exploring';
   const b = document.getElementById('od-back-btn'); if(b) b.style.visibility = 'hidden';
+  const rb = document.getElementById('od-rule-btn'); if(rb) rb.style.display = 'flex';
   setSectionProg('s6-prog-fill','s6-prog-label', OD_VOICE.length, OD_VOICE.length);
 }
 function goBackODVoice(e) {
@@ -1517,15 +1534,15 @@ const MOLNAR_WORKS = [
 ];
 
 // Which narration lines show inspiration, and what caption + which works.
-// Keyed by odVoiceIdx. (OD_VOICE has 4 lines, indices 0–3.)
+// Keyed by odVoiceIdx. (OD_VOICE has 5 lines, indices 0–4.)
 const OD_INSPIRE_BY_LINE = {
-  1: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
+  2: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
        works:[0],
        caption:'A field of lines, then some rotated and erased at random. The order is disturbed — never destroyed — and that is what makes it come alive.' },
-  2: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
+  3: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
        works:[1],
        caption:'Concentric squares, slightly displaced. The disturbance is never arbitrary: how much, and where it falls, is decided by a rule.' },
-  3: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
+  4: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
        works:[2],
        caption:'Order loosened by hand. This is the territory you are about to enter — finding the exact amount of disorder that feels alive.' },
 };

@@ -171,6 +171,27 @@ html,body { width:100%;height:100%;background:var(--black);
 .voice-card.on-dark .voice-back:hover { color:var(--accent1); }
 .voice-card.on-dark .voice-tap { color:rgba(255,255,255,0.4); }
 
+/* ── On-demand rule panel (shared across all three games) ── */
+.rule-toggle-btn {
+  width:19px;height:19px;flex-shrink:0;border-radius:50%;
+  font-family:'DM Mono',monospace;font-size:10px;line-height:1;
+  color:rgba(0,0,0,0.35);background:none;border:1px solid rgba(0,0,0,0.2);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:color 0.15s,border-color 0.15s,background 0.15s;
+}
+.rule-toggle-btn:hover { color:var(--accent1,#1a35d4);border-color:var(--accent1,#1a35d4); }
+.rule-toggle-btn.open { color:#fff;background:var(--accent1,#1a35d4);border-color:var(--accent1,#1a35d4); }
+.rule-panel {
+  display:none;width:100%;box-sizing:border-box;
+  background:rgba(0,0,0,0.03);border-left:3px solid var(--accent1,#1a35d4);
+  padding:10px 14px;margin-top:10px;
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:300;line-height:1.55;color:var(--black);
+}
+.rule-panel.open { display:block; }
+.rule-panel strong { font-weight:500;color:var(--accent1,#1a35d4); }
+.rule-panel ol { margin:4px 0 0 16px;padding:0; }
+.rule-panel li { margin-bottom:2px; }
+
 /* ── Game 1 play card ── */
 .game1-play-card { background:#fff;width:min(560px,90vw);padding:14px 22px;
   border-top:3px solid var(--accent1,#f33f2c);

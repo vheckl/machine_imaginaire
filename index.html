@@ -232,6 +232,7 @@
           <div class="game1-play-rule">
             <strong>Odd</strong> → mark &nbsp;·&nbsp; <strong>Even</strong> → empty
           </div>
+          <button class="rule-toggle-btn" id="g1-rule-btn" onclick="toggleRulePanel('g1')" title="Show the rule">?</button>
           <button class="skip-game-btn" onclick="showLevelTransition('Game skipped','Inclinaisons','03 — Execute the algorithm',()=>goToSketchScene(),'incl')" style="padding:0 10px;flex-shrink:0;">Skip game →</button>
           <div class="game1-counters">
             <div class="game1-counter">
@@ -243,6 +244,9 @@
               <span class="game1-counter-lbl">wrong</span>
             </div>
           </div>
+        </div>
+        <div class="rule-panel" id="g1-rule-panel">
+          <strong>Odd</strong> number → place a mark. <strong>Even</strong> number → leave the cell empty. That's the whole rule — you never need to remember it, it's always right here.
         </div>
       </div>
       <!-- POST: compass + voice card -->
@@ -438,6 +442,7 @@
           <div class="incl-rule-text">
             Roll → look up → select orientation · <strong>81–00</strong> = blank
           </div>
+          <button class="rule-toggle-btn" id="incl-rule-btn" onclick="toggleRulePanel('incl')" title="Show the rule">?</button>
           <button class="skip-game-btn" onclick="showLevelTransition('Game skipped','Your algorithm','06 — Design your own',()=>startFreeComp(),'free')" style="padding:0 10px;flex-shrink:0;">Skip game →</button>
           <div class="incl-counters">
             <div class="incl-counter">
@@ -449,6 +454,13 @@
               <span class="incl-counter-lbl">wrong</span>
             </div>
           </div>
+        </div>
+        <div class="rule-panel" id="incl-rule-panel">
+          <ol>
+            <li>Roll the dice — the two digits together make one number, 01 through 00.</li>
+            <li>Find that number's range in the lookup table.</li>
+            <li>Place a line at the orientation the table gives you — or, for <strong>81–00</strong>, leave the cell blank.</li>
+          </ol>
         </div>
       </div>
       <!-- POST narration -->
@@ -663,7 +675,11 @@
         <p id="od-voice-text"></p>
         <div class="voice-nav">
           <button class="voice-back" id="od-back-btn" onclick="goBackODVoice(event)">← back</button>
+          <button class="rule-toggle-btn" id="od-rule-btn" onclick="event.stopPropagation();toggleRulePanel('od')" title="Show the rule" style="display:none;">?</button>
           <span class="voice-tap" id="od-voice-tap">click to continue</span>
+        </div>
+        <div class="rule-panel" id="od-rule-panel" onclick="event.stopPropagation()">
+          The <strong>Disturbance</strong> slider sets how much deviation to introduce. The buttons below it — Uniform, Progressive, Radial, Inverse — set where across the grid that deviation falls.
         </div>
       </div>
     </div>
