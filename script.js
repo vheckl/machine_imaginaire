@@ -387,8 +387,7 @@ const SKETCH_STEPS=[
   {text:"Look at the writing in the top right, in my own hand: 'blancs 20%, 8 inclinaisons 10% pour chaque.' It means: leave 20 percent of the cells blank, and use eight possible line orientations, each appearing 10 percent of the time. Those two sentences are the complete instructions. Nothing else decides the image."},
   {text:"Beneath the writing is a compass wheel. I drew the eight orientations and numbered them 1 through 8 — from horizontal, turning step by step toward vertical. Each direction was given exactly the same chance. I did not let any angle dominate, because the moment one does, it becomes a preference — and preference is exactly what I was trying to remove."},
   {text:"And below the compass is the lookup table. This is the heart of it: a number comes in, and the table tells you which of the eight orientations to draw. No interpretation. The number maps to an angle, the angle goes in the cell. That mechanical step — number to angle — is the whole algorithm, written out by hand before any computer touched it."},
-  {text:"But to run it, I needed a number for every single cell — genuine randomness, from outside myself. Not something I calculated."},
-  {text:"That turned out to be harder than it sounds. In the 1960s you could not simply ask for one. I found two very different sources — I'll show you both in a moment."},
+  {text:"But to run it, I needed a number for every single cell — genuine randomness, from outside myself. Where I found it is a story in itself, which comes next."},
   {text:"Then the execution itself: one number, one decision, one line. An arrow from the table to the grid. No hesitation, no stepping back to reconsider. The algorithm does not have second thoughts — and while I followed it, neither could I."},
   {text:"I found this liberating, not limiting. I had spent years trying to escape my own taste — the habits I learned in art school, the reflexes of my culture. The rule let me make marks I would never have chosen, and discover they were beautiful anyway."},
   {text:"Cell by cell, the grid filled slowly. What emerged was something I could not have pictured in advance — and yet I had specified every part of how it was made. Both things are true at once. That is the puzzle I spent my life inside."},
@@ -408,9 +407,9 @@ function sketchAnnotation(step){
   else if(step===2)box(487,14,380,68,BL,'The rules written in her hand',true);
   else if(step===3)box(505,48,195,200,RD,'Compass: 8 orientations');
   else if(step===4){box(505,48,195,200,RD,'');box(487,285,250,210,BL,'Lookup table: number → orientation',true);}
-  else if(step===6)box(487,285,250,210,BL,'Lookup table: number → orientation',true);
-  else if(step===7){box(487,285,250,210,BL,'Lookup table');addDefs();const line=document.createElementNS(ns,'line');[['x1',610],['y1',390],['x2',300],['y2',200],['stroke',BL],['stroke-width','2'],['marker-end','url(#m2)']].forEach(([k,v])=>line.setAttribute(k,v));svg.appendChild(line);const c=document.createElementNS(ns,'circle');[['cx',300],['cy',200],['r',16],['fill','none'],['stroke',BL],['stroke-width','2']].forEach(([k,v])=>c.setAttribute(k,v));svg.appendChild(c);}
-  else if(step>=8)box(28,55,405,278,BL,'');
+  else if(step===5)box(487,285,250,210,BL,'Lookup table: number → orientation',true);
+  else if(step===6){box(487,285,250,210,BL,'Lookup table');addDefs();const line=document.createElementNS(ns,'line');[['x1',610],['y1',390],['x2',300],['y2',200],['stroke',BL],['stroke-width','2'],['marker-end','url(#m2)']].forEach(([k,v])=>line.setAttribute(k,v));svg.appendChild(line);const c=document.createElementNS(ns,'circle');[['cx',300],['cy',200],['r',16],['fill','none'],['stroke',BL],['stroke-width','2']].forEach(([k,v])=>c.setAttribute(k,v));svg.appendChild(c);}
+  else if(step>=7)box(28,55,405,278,BL,'');
 }
 function goToSketchScene(){sketchIdx=0;showScene('s3');drawCompassMotif('compass-motif-3','#02874c');loadSketchImage();renderSketchStep();}
 function renderSketchStep(){
@@ -769,9 +768,7 @@ const RAND_LINES = [
   "This was not a trivial problem. In the 1950s and 60s, randomness was expensive. You had to buy it.",
   "The RAND Corporation published one million random digits in 1955. A physical book. You looked up a page, picked a row, read the numbers. Scientists, statisticians, military researchers — they all used it. It sat on shelves next to dictionaries.",
   "My colleague François Morellet had a cheaper solution. He used a telephone directory. Any sequence of digits that nobody had arranged on purpose would do.",
-  "What both methods share: the numbers came from outside the system. No formula. No pattern. Pure external input.",
-  "A computer cannot do this. What computers call 'random' is a formula — a calculation that produces numbers which look unpredictable but follow a precise sequence. Give it the same starting point and it will produce exactly the same numbers every time.",
-  "This is why we are using dice in this game — a convention we invented to make the process tangible. We do not know exactly how Molnár sourced her numbers. What matters is the principle: something external to the algorithm, something it cannot predict.",
+  "Both share one thing: the numbers came from outside the system. A computer cannot truly do this — what it calls 'random' is a formula that only imitates chance. We use dice here for the same reason: something real, outside the rule, that the algorithm cannot predict.",
 ];
 
 let randSceneIdx = 0;
