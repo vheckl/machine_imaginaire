@@ -186,19 +186,19 @@ function drawFlow(svg,step){
 
   if(step<=2){
     // Umbrella analogy — simple, friendly
-    mono(160,24,'IF  →  THEN',9,'rgba(0,0,0,0.3)');
+    mono(160,24,'IF  →  THEN',11,'rgba(0,0,0,0.3)');
     // Rain cloud
     el('circle',{cx:90,cy:80,r:16,fill:'rgba(0,71,173,0.12)',stroke:A2,'stroke-width':'1.5'});
     for(let i=0;i<3;i++)el('line',{x1:80+i*10,y1:98,x2:78+i*10,y2:112,stroke:A2,'stroke-width':'1.5','stroke-linecap':'round'});
-    txt(90,140,'raining',11,A2);
+    txt(90,140,'raining',13,A2);
     // Arrow
     el('line',{x1:130,y1:80,x2:180,y2:80,stroke:MD,'stroke-width':'1.5'});
     el('polygon',{points:'180,76 188,80 180,84',fill:MD});
-    txt(230,80,'take umbrella',12,BK);
-    txt(160,175,'one input, one answer, no hesitation',10,'rgba(0,0,0,0.4)');
+    txt(230,80,'take umbrella',14,BK);
+    txt(160,175,'one input, one answer, no hesitation',12,'rgba(0,0,0,0.4)');
   } else {
     // Odd/even rule — concrete examples matching the game
-    mono(160,20,'THE RULE YOU WILL RUN',9,'rgba(243,63,44,0.5)');
+    mono(160,20,'THE RULE YOU WILL RUN',11,'rgba(243,63,44,0.5)');
     // Two example rows
     const ex=[{n:7,odd:true},{n:4,odd:false},{n:13,odd:true},{n:20,odd:false}];
     const startX=44,gap=62,rowY=70;
@@ -206,7 +206,7 @@ function drawFlow(svg,step){
       const x=startX+i*gap;
       // number
       el('text',{x,y:rowY,'text-anchor':'middle','dominant-baseline':'middle',fill:BK,'font-family':'DM Mono,monospace','font-size':22,'font-weight':'500'},e.n);
-      mono(x,rowY+22,e.odd?'odd':'even',8,e.odd?A1:'rgba(0,0,0,0.35)');
+      mono(x,rowY+22,e.odd?'odd':'even',10,e.odd?A1:'rgba(0,0,0,0.35)');
       // arrow down
       el('line',{x1:x,y1:rowY+34,x2:x,y2:rowY+48,stroke:MD,'stroke-width':'1.2'});
       el('polygon',{points:(x-3)+','+(rowY+44)+' '+x+','+(rowY+52)+' '+(x+3)+','+(rowY+44),fill:MD});
@@ -214,7 +214,7 @@ function drawFlow(svg,step){
       if(e.odd) filledCell(x-14,rowY+56,28,A1);
       else emptyCell(x-14,rowY+56,28);
     });
-    txt(160,180,'odd → mark    ·    even → empty',11,BK,'middle','400');
+    txt(160,180,'odd → mark    ·    even → empty',13,BK,'middle','400');
   }
 }
 function startAlgoIntro(){algoIdx=0;showScene('s2');drawCompassMotif('compass-motif-s2','#f33f2c');renderAlgoStep();}
@@ -401,7 +401,7 @@ function sketchAnnotation(step){
   function addDefs(){const d=document.createElementNS(ns,'defs');d.innerHTML=`<marker id="m2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="${BL}"/></marker>`;svg.appendChild(d);}
   function box(x,y,w,h,color,label,below){
     addDefs();const r=document.createElementNS(ns,'rect');[['x',x],['y',y],['width',w],['height',h],['fill','none'],['stroke',color],['stroke-width','2.5'],['stroke-dasharray','6 3']].forEach(([k,v])=>r.setAttribute(k,v));svg.appendChild(r);
-    if(label){const ty=below?y+h+2:y-20;const bg=document.createElementNS(ns,'rect');[['x',x],['y',ty],['width',w],['height',20],['fill',color]].forEach(([k,v])=>bg.setAttribute(k,v));svg.appendChild(bg);const t=document.createElementNS(ns,'text');[['x',x+w/2],['y',ty+14],['text-anchor','middle'],['fill','white'],['font-size','11'],['font-family','DM Mono,monospace']].forEach(([k,v])=>t.setAttribute(k,v));t.textContent=label.toUpperCase();svg.appendChild(t);}
+    if(label){const ty=below?y+h+2:y-23;const bg=document.createElementNS(ns,'rect');[['x',x],['y',ty],['width',w],['height',23],['fill',color]].forEach(([k,v])=>bg.setAttribute(k,v));svg.appendChild(bg);const t=document.createElementNS(ns,'text');[['x',x+w/2],['y',ty+15.5],['text-anchor','middle'],['fill','white'],['font-size','13'],['font-family','DM Mono,monospace']].forEach(([k,v])=>t.setAttribute(k,v));t.textContent=label.toUpperCase();svg.appendChild(t);}
   }
   if(step===1)box(28,55,405,278,BL,'The drawing');
   else if(step===2)box(487,14,380,68,BL,'The rules written in her hand',true);
