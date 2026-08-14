@@ -1139,11 +1139,12 @@ let odVoiceIdx = 0;
 let odVersions = [];
 
 const OD_VOICE = [
-  "In the first games you followed strict rules — odd or even, a number to a direction. The rule decided everything. The result was pure order.",
-  "For years, that was enough for me. But slowly a question crept in: a perfectly ordered grid is calm, complete — and perhaps a little lifeless. What if the rule itself let in a small disturbance?",
-  "Not chaos. Not a mistake. A disturbance with its own rule — how much to deviate, and where. Order and disorder, held in the same hand.",
-  "Start from a perfect grid where every element is identical. Then introduce deviation — decide how much, and where it falls.",
-  "I was never looking for chaos. I was looking for the exact moment order becomes alive. Now it is your turn to find it."
+  "You may have noticed something in the games you just played. The grid was strict — but what landed in each cell was left to chance. That is where I began.",
+  "For a long time, that was my way: keep the grid, and disturb only what sits inside it.",
+  "But I did not stop there. Slowly I grew bolder, and began to disturb the structure itself — to let the grid loosen, bend, break its own regularity. The order I had built so carefully, I now let come apart, by degrees.",
+  "People asked why. Here is the truth: I love order. But I cannot bear it. I make mistakes. I stutter. I mix up my words. Perhaps my disorder came from this — from being a person, and not a machine.",
+  "Still, I never wanted chaos. I let in only as much disorder as the work could hold — sometimes just one percent. Enough imperfection to make it breathe. And even the disorder followed a rule: in French I called one series (Dés)Ordres — 'disorders,' but also 'some orders.' Chance, but chance I had authored.",
+  "Now it is yours. Begin with order. Then disturb what sits inside it — and, when you are ready, the grid itself. Decide how much, and where. Find the point where it stops being correct, and starts being alive."
 ];
 
 // ── Seeded random (deterministic per cell) ──
@@ -1531,12 +1532,12 @@ const MOLNAR_WORKS = [
 ];
 
 // Which narration lines show inspiration, and what caption + which works.
-// Keyed by odVoiceIdx. (OD_VOICE has 5 lines, indices 0–4.)
+// Keyed by odVoiceIdx. (OD_VOICE has 6 lines, indices 0–5.)
 const OD_INSPIRE_BY_LINE = {
-  2: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
+  1: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
        works:[0],
        caption:'A field of lines, then some rotated and erased at random. The order is disturbed — never destroyed — and that is what makes it come alive.' },
-  3: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
+  2: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
        works:[1],
        caption:'Concentric squares, slightly displaced. The disturbance is never arbitrary: how much, and where it falls, is decided by a rule.' },
   4: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
