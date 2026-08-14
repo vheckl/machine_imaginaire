@@ -424,7 +424,7 @@ function goBackSketch(e){e.stopPropagation();if(sketchIdx>0){sketchIdx--;renderS
 
 // ── INCLINAISONS GAME (S4) ──
 const INCL_PRE=["A number will appear after you roll. Consult the lookup table. Find which range it falls in. Select the corresponding orientation on the right.","You don't need to memorize the table, either — it stays open beside the grid for as long as you need it.","If the number falls between 81 and 00 — the cell is blank. Press the confirm button. That emptiness is also part of the rule.","Roll the dice to generate your first number."];
-const INCL_POST=["You executed the algorithm. The composition is yours — but it is also not yours.","Look at what the rule produced. The distribution is almost even. Not because you controlled it — because the rule guaranteed it."];
+const INCL_POST=["You executed the algorithm. The composition is yours — but it is also not yours.","You made every mark. Yet you could not have planned how it would look. That gap — between doing and choosing — is the whole subject."];
 let inclPreIdx=0,inclPostIdx=0,inclCellIdx=0,inclResults=Array(25).fill(null),inclWrong=0,inclCorrect=0,inclPhase='pre';
 let inclDiceAnimating=false,inclCurrentDice=[null,null];
 
@@ -1140,9 +1140,9 @@ let odVersions = [];
 
 const OD_VOICE = [
   "In the first games you followed strict rules — odd or even, a number to a direction. The rule decided everything. The result was pure order.",
-  "And you won't need to memorize this one either — every choice you make here stays visible and adjustable while you work.",
-  "But pure order is dead. A perfect grid says nothing. My real work began when I asked: what if I disturb the order — not by accident, but by another rule?",
-  "Start from a perfect grid where every element is identical. Then introduce deviation — and decide how much, and where it falls. The disturbance itself obeys a rule you choose.",
+  "For years, that was enough for me. But slowly a question crept in: a perfectly ordered grid is calm, complete — and perhaps a little lifeless. What if the rule itself let in a small disturbance?",
+  "Not chaos. Not a mistake. A disturbance with its own rule — how much to deviate, and where. Order and disorder, held in the same hand.",
+  "Start from a perfect grid where every element is identical. Then introduce deviation — decide how much, and where it falls.",
   "I was never looking for chaos. I was looking for the exact moment order becomes alive. Now it is your turn to find it."
 ];
 
@@ -1197,7 +1197,7 @@ function odRevealGame() {
   if(area) area.style.display = 'flex';
   const insp = document.getElementById('od-inspire'); if(insp) insp.classList.remove('show');
   // Replace the narration box content with a short studio prompt
-  document.getElementById('od-voice-text').textContent = "The studio is yours — disturb, save, and download what you like.";
+  document.getElementById('od-voice-text').textContent = "The studio is yours. Every choice here stays visible and adjustable — nothing to memorize. Disturb, save, and download what you like.";
   document.getElementById('od-voice-tap').textContent = 'keep exploring';
   const b = document.getElementById('od-back-btn'); if(b) b.style.visibility = 'hidden';
   const rb = document.getElementById('od-rule-btn'); if(rb) rb.style.display = 'flex';
