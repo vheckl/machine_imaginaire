@@ -231,7 +231,7 @@ function goBackAlgo(e){e.stopPropagation();if(algoIdx>0){algoIdx--;renderAlgoSte
 
 // ── GAME 1 ──
 const G1_PRE=["Here is a rule: if the number is odd — place a mark. If the number is even — leave the cell empty.","You don't need to hold that in your head — the rule stays on screen the whole time you're working.","Twenty-five numbers. Twenty-five decisions. Follow the rule exactly."];
-const G1_POST=["You just executed a program.","The rule existed before you picked up the pencil. The result followed from it completely.","This is where I started — long before I had access to a computer. The algorithm on paper, myself as the processor."];
+const G1_POST=["You just executed a program.","The rule existed before you picked up the pencil. The result followed from it completely.","This is where I started — long before I had access to a computer. The algorithm on paper, myself as the processor.","That was the simplest rule I could give you — one number, one decision. Now let me show you a real one, from 1971. The same idea, but with more steps between you and the mark."];
 let g1PreIdx=0,g1PostIdx=0,g1CellIdx=0,g1Numbers=[],g1Results=Array(25).fill(null),g1Wrong=0,g1Correct=0,g1Phase='pre';
 
 function generateG1Numbers(){const a=[];for(let i=0;i<25;i++)a.push(Math.floor(Math.random()*99)+1);return a;}
