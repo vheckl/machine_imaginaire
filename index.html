@@ -443,7 +443,7 @@
             Roll → look up → select orientation · <strong>81–00</strong> = blank
           </div>
           <button class="rule-toggle-btn" id="incl-rule-btn" onclick="toggleRulePanel('incl')" title="Show the rule">?</button>
-          <button class="skip-game-btn" onclick="showLevelTransition('Game skipped','Your algorithm','06 — Design your own',()=>startFreeComp(),'free')" style="padding:0 10px;flex-shrink:0;">Skip game →</button>
+          <button class="skip-game-btn" onclick="showLevelTransition('Game skipped','Trames','06 — Superimposition',()=>startTrames(),'trames')" style="padding:0 10px;flex-shrink:0;">Skip game →</button>
           <div class="incl-counters">
             <div class="incl-counter">
               <span class="incl-counter-val" id="incl-correct-count">0</span>
@@ -513,12 +513,74 @@
     </div>
   </div>
 
+  <!-- ══ S-TRAMES: SUPERIMPOSITION (Morellet) ══ -->
+  <div class="scene level-trames" id="s-trames">
+    <div class="bg-grid"></div>
+    <div class="scene-heading">06 — Superimposition</div>
 
+    <div class="trm-area" id="trm-area">
+      <div class="trm-canvas-wrap">
+        <canvas id="trm-canvas" width="400" height="400"></canvas>
+        <div class="trm-title" id="trm-title">0°</div>
+        <div class="trm-prompt" id="trm-prompt"></div>
+      </div>
+      <div class="trm-controls" id="trm-controls" style="display:none;">
+        <div class="trm-angle-row" id="trm-angle-row">
+          <button class="trm-angle-btn" onclick="trmAddGrid(15)">15°</button>
+          <button class="trm-angle-btn" onclick="trmAddGrid(22.5)">22.5°</button>
+          <button class="trm-angle-btn" onclick="trmAddGrid(30)">30°</button>
+          <button class="trm-angle-btn" onclick="trmAddGrid(45)">45°</button>
+          <button class="trm-angle-btn" onclick="trmAddGrid(67.5)">67.5°</button>
+          <button class="trm-angle-btn" onclick="trmAddGrid(90)">90°</button>
+        </div>
+        <div class="trm-stack-actions">
+          <button class="trm-stack-btn" id="trm-remove-btn" onclick="trmRemoveLast()" disabled>← Remove last grid</button>
+          <button class="trm-stack-btn" id="trm-reset-btn" onclick="trmStartOver()" disabled>↻ Start over</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-anchor" id="trm-anchor">
+      <div class="section-prog-wrap">
+        <div class="section-prog-track"><div class="section-prog-fill" id="trm-prog-fill" style="width:0%"></div></div>
+        <span class="section-prog-label" id="trm-prog-label">1 / 1</span>
+      </div>
+      <!-- PRE narration -->
+      <div id="trm-pre-card" onclick="advanceTrmPre()" style="display:flex;flex-direction:column;align-items:center;">
+        <canvas id="compass-motif-trm" width="60" height="60" class="compass-motif"></canvas>
+        <div class="voice-card">
+          <p id="trm-pre-text"></p>
+          <div class="voice-nav">
+            <button class="voice-back" id="trm-pre-back" onclick="goBackTrmPre(event)">← back</button>
+            <span class="voice-tap" id="trm-pre-tap">click to continue</span>
+          </div>
+        </div>
+      </div>
+      <!-- PLAY: continue button -->
+      <div id="trm-play-card" style="display:none;">
+        <div class="trm-play-card">
+          <div class="trm-play-hint">[Placeholder] Add at least one more grid, then continue.</div>
+          <button class="trm-continue-btn" id="trm-continue-btn" onclick="trmContinue()" disabled>Continue →</button>
+        </div>
+      </div>
+      <!-- POST narration -->
+      <div id="trm-post-card" style="display:none;" onclick="advanceTrmPost()">
+        <canvas id="compass-motif-trm-post" width="60" height="60" class="compass-motif"></canvas>
+        <div class="voice-card">
+          <p id="trm-post-text"></p>
+          <div class="voice-nav">
+            <button class="voice-back" id="trm-post-back" onclick="goBackTrmPost(event)">← back</button>
+            <span class="voice-tap" id="trm-post-tap">click to continue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ══ S6 ORDER & DISTURBANCE ══ -->
   <div class="scene level-end" id="s6">
     <div class="bg-grid"></div>
-    <div class="scene-heading">06 — Order and its disturbance</div>
+    <div class="scene-heading">07 — Order and its disturbance</div>
     <!-- Molnár inspiration display (shown during intro narration, above the voice box) -->
     <div id="od-inspire" class="od-inspire">
       <div class="od-inspire-eyebrow" id="od-inspire-eyebrow">Vera Molnár — order and disorder</div>

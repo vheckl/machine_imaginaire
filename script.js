@@ -8,7 +8,7 @@ PORTRAIT_FALLBACK=PORTRAIT_SVG;COMPUTER_FALLBACK=COMPUTER_SVG;
 
 
 const ANGLES=[0,22.5,45,67.5,90,112.5,135,157.5];
-const LEVEL_ACCENTS={'s0':'#1a35d4','s1':'#1a35d4','s2':'#f33f2c','s-game1':'#f33f2c','s3':'#02874c','s4':'#02874c','s5':'#02874c','s7':'#0047ad'};
+const LEVEL_ACCENTS={'s0':'#1a35d4','s1':'#1a35d4','s2':'#f33f2c','s-game1':'#f33f2c','s3':'#02874c','s4':'#02874c','s5':'#02874c','s-trames':'#7c3aed','s7':'#0047ad'};
 
 // Gallery
 const gallerySlots=[
@@ -24,8 +24,8 @@ let currentSceneId='s0',levelTransCb=null;
 let game1ResultsStore=Array(25).fill(null);
 let inclResultsStore=Array(25).fill(null);
 
-const SCENES=['s0','s1','s2','s-game1','s3','s3b','s4','s5','s6'];
-const PROG=[5,14,26,38,48,58,70,88,100];
+const SCENES=['s0','s1','s2','s-game1','s3','s3b','s4','s5','s-trames','s6'];
+const PROG=[5,14,26,38,48,58,70,88,94,100];
 const dotsEl=document.getElementById('step-dots');
 SCENES.forEach((_,i)=>{const d=document.createElement('div');d.className='sdot';d.id='sd'+i;dotsEl.appendChild(d);});
 
@@ -85,6 +85,7 @@ function showLevelTransition(complete,title,sub,cb,theme){
   const themes={
     'incl':  {bg:'#02874c', accent:'#fff'},      // Inclinaisons — green
     'sketch':{bg:'#02874c', accent:'#fff'},
+    'trames':{bg:'#7c3aed', accent:'#e8578c'},   // Superimposition — violet + rose
     'free':  {bg:'#0047ad', accent:'#f8e106'},   // Your algorithm — blue + gold
     'default':{bg:'#1a35d4', accent:'#fff'}
   };
@@ -706,9 +707,152 @@ function renderArtworkVoice(){
 }
 function advanceArtwork(){
   if(artworkIdx<ARTWORK_VOICE.length-1){artworkIdx++;renderArtworkVoice();}
-  else{ startFreeComp(); }
+  else{ showLevelTransition('Inclinaisons complete','Trames','06 — Superimposition',()=>startTrames(),'trames'); }
 }
 function goBackArtwork(e){e.stopPropagation();if(artworkIdx>0){artworkIdx--;renderArtworkVoice();}}
+
+// ── S-TRAMES: SUPERIMPOSITION (Morellet) ──
+// NOTE: narration below is placeholder — [Placeholder] lines are stand-ins for the real
+// Molnár-voice narration, to be written in a follow-up pass.
+const TRAMES_PRE=["[Placeholder] Introduce Morellet's Trames — superimposed grids of fine parallel lines."];
+const TRAMES_POST=["[Placeholder] Closing reflection on interference and superimposition, before the final game."];
+let trmPreIdx=0,trmPostIdx=0,trmPhase='pre';
+// The composition is a stack of grid angles. trmGrids[0] is always the fixed
+// 0° base grid — "remove last" and "start over" never touch index 0.
+// A newly-added grid draws in TRM_HIGHLIGHT for TRM_HIGHLIGHT_MS, then settles to
+// TRM_INK so the finished composition reads as one dark-on-white Trames, like Morellet's.
+const TRM_MAX_GRIDS=4;
+const TRM_INK='rgba(10,10,10,1)',TRM_HIGHLIGHT='rgba(124,58,237,1)';
+const TRM_HIGHLIGHT_MS=600;
+let trmGrids=[0];
+let trmHighlightTimer=null;
+const TRM_PROMPT_STAGE1="[Placeholder] One grid. Perfect order. No interference — yet.";
+const TRM_PROMPT_STAGE2="Choose an angle. Lay a grid over the last. Build your superimposition — the way Morellet did.";
+
+function startTrames(){
+  trmPreIdx=0;trmPostIdx=0;trmPhase='pre';
+  if(trmHighlightTimer){clearTimeout(trmHighlightTimer);trmHighlightTimer=null;}
+  trmGrids=[0];
+  showScene('s-trames');
+  drawCompassMotif('compass-motif-trm','#7c3aed');
+  document.getElementById('trm-pre-card').style.display='';
+  document.getElementById('trm-play-card').style.display='none';
+  document.getElementById('trm-post-card').style.display='none';
+  document.getElementById('trm-controls').style.display='none';
+  document.getElementById('trm-prompt').textContent=TRM_PROMPT_STAGE1;
+  trmUpdateTitle();
+  trmUpdateButtons();
+  renderTrmPre();
+  drawTrames(false);
+}
+function renderTrmPre(){
+  document.getElementById('trm-pre-text').textContent=TRAMES_PRE[trmPreIdx];
+  const isLast=trmPreIdx===TRAMES_PRE.length-1;
+  document.getElementById('trm-pre-tap').textContent=isLast?'click to begin composing →':'click to continue';
+  const b=document.getElementById('trm-pre-back');if(b)b.disabled=trmPreIdx===0;
+  setSectionProg('trm-prog-fill','trm-prog-label',trmPreIdx+1,TRAMES_PRE.length);
+}
+function advanceTrmPre(){
+  if(trmPreIdx<TRAMES_PRE.length-1){trmPreIdx++;renderTrmPre();}
+  else{
+    trmPhase='play';
+    document.getElementById('trm-pre-card').style.display='none';
+    document.getElementById('trm-play-card').style.display='';
+    document.getElementById('trm-controls').style.display='';
+    document.getElementById('trm-prompt').textContent=TRM_PROMPT_STAGE2;
+    setSectionProg('trm-prog-fill','trm-prog-label',1,1);
+    trmUpdateButtons();
+    drawTrames(false);
+  }
+}
+function goBackTrmPre(e){e.stopPropagation();if(trmPreIdx>0){trmPreIdx--;renderTrmPre();}}
+
+function trmFormatAngle(a){ return a+'°'; }
+function trmUpdateTitle(){
+  const el=document.getElementById('trm-title');
+  if(el)el.textContent=trmGrids.map(trmFormatAngle).join(' – ');
+}
+function trmUpdateButtons(){
+  const atMax=trmGrids.length>=TRM_MAX_GRIDS;
+  const atBase=trmGrids.length<=1;
+  document.querySelectorAll('#trm-angle-row .trm-angle-btn').forEach(b=>b.disabled=atMax);
+  const rb=document.getElementById('trm-remove-btn');if(rb)rb.disabled=atBase;
+  const sb=document.getElementById('trm-reset-btn');if(sb)sb.disabled=atBase;
+  const cb=document.getElementById('trm-continue-btn');if(cb)cb.disabled=trmGrids.length<2;
+}
+function trmAddGrid(angle){
+  if(trmGrids.length>=TRM_MAX_GRIDS)return;
+  trmGrids.push(angle);
+  trmUpdateTitle();
+  trmUpdateButtons();
+  drawTrames(true);
+  if(trmHighlightTimer)clearTimeout(trmHighlightTimer);
+  trmHighlightTimer=setTimeout(()=>{drawTrames(false);trmHighlightTimer=null;},TRM_HIGHLIGHT_MS);
+}
+function trmRemoveLast(){
+  if(trmGrids.length<=1)return;
+  if(trmHighlightTimer){clearTimeout(trmHighlightTimer);trmHighlightTimer=null;}
+  trmGrids.pop();
+  trmUpdateTitle();
+  trmUpdateButtons();
+  drawTrames(false);
+}
+function trmStartOver(){
+  if(trmHighlightTimer){clearTimeout(trmHighlightTimer);trmHighlightTimer=null;}
+  trmGrids=[0];
+  trmUpdateTitle();
+  trmUpdateButtons();
+  drawTrames(false);
+}
+function drawTrames(highlightNewest){
+  const canvas=document.getElementById('trm-canvas');if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const w=canvas.width,h=canvas.height;
+  ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);
+  const spacing=14,diag=Math.ceil(Math.sqrt(w*w+h*h));
+  function drawLayer(angleDeg,color){
+    const rad=angleDeg*Math.PI/180;
+    ctx.save();
+    ctx.translate(w/2,h/2);
+    ctx.rotate(rad);
+    ctx.strokeStyle=color;
+    ctx.lineWidth=2.2;
+    for(let x=-diag/2;x<=diag/2;x+=spacing){
+      ctx.beginPath();
+      ctx.moveTo(x,-diag/2);
+      ctx.lineTo(x,diag/2);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+  trmGrids.forEach((angle,i)=>{
+    const isNewest=highlightNewest&&i===trmGrids.length-1;
+    drawLayer(angle,isNewest?TRM_HIGHLIGHT:TRM_INK);
+  });
+}
+
+function trmContinue(){
+  if(trmGrids.length<2)return;
+  trmPhase='post';trmPostIdx=0;
+  document.getElementById('trm-play-card').style.display='none';
+  document.getElementById('trm-post-card').style.display='';
+  drawCompassMotif('compass-motif-trm-post','#7c3aed');
+  renderTrmPost();
+}
+function renderTrmPost(){
+  document.getElementById('trm-post-text').textContent=TRAMES_POST[trmPostIdx];
+  const isLast=trmPostIdx===TRAMES_POST.length-1;
+  document.getElementById('trm-post-tap').textContent=isLast?'click to continue →':'click to continue';
+  const b=document.getElementById('trm-post-back');if(b)b.disabled=trmPostIdx===0;
+  setSectionProg('trm-prog-fill','trm-prog-label',trmPostIdx+1,TRAMES_POST.length);
+}
+function advanceTrmPost(){
+  if(trmPostIdx<TRAMES_POST.length-1){trmPostIdx++;renderTrmPost();}
+  else{
+    showLevelTransition('Trames complete','Order & Disturbance','07 — Design your own algorithm',()=>startFreeComp(),'free');
+  }
+}
+function goBackTrmPost(e){e.stopPropagation();if(trmPostIdx>0){trmPostIdx--;renderTrmPost();}}
 
 // ── S7 ENDING ──
 const ENDING_LINES=["Look at the two grids. Same rules. Same logic. Different results.","You made both of them. But they look different. Why?","In the first game, the rule was simple. A binary decision — mark or empty. Your hand followed it exactly.","In the second, the rule was more complex. Eight orientations, a lookup table, a pair of dice. More steps between intention and execution.","The more steps, the more the algorithm speaks. The more it becomes itself, and less you.","This is what I spent my career trying to understand. Not to eliminate the human — but to see it more clearly.","I never thought the algorithm was smarter than me. I thought it was more honest about what it did not know."];

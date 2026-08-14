@@ -9,6 +9,7 @@
 .level-1 { --accent1:#f33f2c; --accent2:#0047ad; --accent-lt:#fdecea; }
 .level-2 { --accent1:#02874c; --accent2:#3d3c41; --accent-lt:#e3f5ec; }
 .level-end { --accent1:#0047ad; --accent2:#f8e106; --accent-lt:#fffde7; }
+.level-trames { --accent1:#7c3aed; --accent2:#e8578c; --accent-lt:#f1e9fc; }
 
 html,body { width:100%;height:100%;background:var(--black);
   font-family:'DM Sans',sans-serif;color:var(--black);overflow:hidden; }
@@ -1460,4 +1461,55 @@ html,body { width:100%;height:100%;background:var(--black);
   background:var(--accent2,#0047ad);color:#fff;border:none;cursor:pointer;
 }
 .mref-close:hover { opacity:0.88; }
+
+
+/* ════ Trames (Morellet) — superimposed grids ════ */
+.trm-area {
+  position:absolute;top:36px;left:0;right:0;bottom:150px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:22px;padding:16px;z-index:5;
+}
+.trm-canvas-wrap { display:flex;flex-direction:column;align-items:center;gap:12px; }
+#trm-canvas {
+  display:block;border:1px solid rgba(0,0,0,0.12);background:#fff;
+  width:min(360px,46vh,70vw);height:min(360px,46vh,70vw);
+}
+.trm-title {
+  font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.04em;
+  color:rgba(0,0,0,0.7);text-align:center;
+}
+.trm-prompt {
+  font-size:14px;font-weight:300;color:rgba(0,0,0,0.5);
+  text-align:center;max-width:420px;line-height:1.55;
+}
+.trm-controls { display:flex;flex-direction:column;gap:12px;align-items:center;width:min(420px,90vw); }
+.trm-angle-row { display:flex;gap:6px;flex-wrap:wrap;justify-content:center; }
+.trm-angle-btn {
+  padding:7px 11px;border:1.5px solid rgba(0,0,0,0.15);background:#fff;cursor:pointer;
+  font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.03em;
+  color:rgba(0,0,0,0.6);transition:all 0.15s;
+}
+.trm-angle-btn:hover:not(:disabled) { border-color:#7c3aed;color:#7c3aed; }
+.trm-angle-btn:disabled { opacity:0.3;cursor:default; }
+.trm-stack-actions { display:flex;gap:10px;justify-content:center;flex-wrap:wrap; }
+.trm-stack-btn {
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.04em;
+  padding:6px 12px;border:1px solid rgba(0,0,0,0.18);background:#fff;cursor:pointer;
+  color:rgba(0,0,0,0.55);transition:all 0.15s;
+}
+.trm-stack-btn:hover:not(:disabled) { border-color:#7c3aed;color:#7c3aed; }
+.trm-stack-btn:disabled { opacity:0.3;cursor:default; }
+
+/* Bottom play card */
+.trm-play-card { background:#fff;width:min(560px,90vw);padding:14px 22px;
+  border-top:3px solid var(--accent1,#7c3aed);
+  display:flex;align-items:center;justify-content:space-between;gap:16px; }
+.trm-play-hint { font-size:14px;font-weight:300;color:var(--black);line-height:1.5; }
+.trm-continue-btn {
+  font-family:'DM Sans',sans-serif;font-size:13px;padding:9px 20px;
+  background:var(--accent1,#7c3aed);color:#fff;border:none;cursor:pointer;
+  white-space:nowrap;transition:opacity 0.2s;
+}
+.trm-continue-btn:hover:not(:disabled) { opacity:0.85; }
+.trm-continue-btn:disabled { opacity:0.3;cursor:default; }
 
