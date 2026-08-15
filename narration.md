@@ -4,7 +4,7 @@ All narrator/voice, instructional, and caption text pulled from `script.js`, in 
 
 A section near the bottom covers "rule panel" texts that live as static markup in `index.html`, not in a JS array, so they're flagged separately. A final appendix covers dead/unreachable code that still exists in `script.js` but is never shown to players.
 
-*(Last refreshed after the Trames/Morellet chapter build-out — covers G1_POST's bridge line, the trimmed SKETCH_STEPS/RAND_LINES, the rewritten INCL_POST and OD_VOICE, and everything new in the Trames chapter.)*
+*(Last refreshed after reworking the Trames/Morellet narration for attribution — TRAMES_PRE/TRAMES_POST now present Molnár and Morellet as divergent GRAV peers rather than implying superimposition was her method, and OD_VOICE is confirmed back at 6 lines after a since-removed prepended bridge line turned out to double the "return to Molnár" pivot TRAMES_POST already makes.)*
 
 ---
 
@@ -179,10 +179,12 @@ A section near the bottom covers "rule panel" texts that live as static markup i
 
 *(s-trames — Morellet/GRAV intro narration, before the compose-a-Trames game)*
 
-1. The method you are about to use is not only mine. It belonged to a friend of mine — François Morellet. I met him in 1957, and a few years later we founded a group together, GRAV, with others who thought as we did.
-2. We were after the same thing from different directions: to take our own hands out of the work, and let rules decide instead of taste. François did it with something beautifully simple — grids.
-3. He would take a screen of fine parallel lines, perfectly ordered, and lay another over it, turned to a chosen angle. Then perhaps a third. Nothing in any single grid is disordered — but where they cross, something appears that is in none of them.
-4. He titled his works by their angles — 0°, 22.5°, 45°, 67.5° — because the angles were the composition. Now compose one yourself: choose your angles, and lay the grids over one another.
+1. I was among the first to work this way — but I was not alone. In Paris in those years, a handful of us were circling the same questions: order, system, chance, the removal of the artist's hand. We did not all answer them the same way.
+2. One of us was my old friend François Morellet. I met him in 1957; a few years later we founded a group together, GRAV. We shared a starting point — let the rule decide, not the taste — but from there, we diverged.
+3. You have spent these games with the grid — filling it, reading it, executing it. I would go on to disturb the grid. But François did something different: he kept each grid perfectly intact, and simply laid one over another, turned to an angle. Where they cross, something appears that is in neither.
+4. He titled his works by their angles — 0°, 22.5°, 45°, 67.5° — because the angles were the whole composition. Try his way yourself: choose your angles, and lay the grids over one another.
+
+*(Rewritten so superimposition reads as Morellet's own method, not Molnár's — she and Morellet are presented as divergent GRAV peers who shared a starting point and answered it differently.)*
 
 ---
 
@@ -190,15 +192,15 @@ A section near the bottom covers "rule panel" texts that live as static markup i
 
 *(Morellet reference artworks, shown large — same slot as the compose canvas — during specific TRAMES_PRE lines)*
 
-**Keyed to TRAMES_PRE line 1 (index 0):**
+**Keyed to TRAMES_PRE line 2 (index 1):**
 - **caption:** François Morellet, *Trames*, 1971. Silkscreen, 60 × 60 cm.
 - image file: `morellet-trames.jpg`
 
-**Keyed to TRAMES_PRE line 2 (index 1):**
+**Keyed to TRAMES_PRE line 3 (index 2):**
 - **caption:** François Morellet, from the *Trames* series. Superimposed line screens.
 - image file: `morellet-trames-2.jpg`
 
-*(Lines 3–4 show no image — the compose canvas returns instead.)*
+*(Lines 1 and 4 show no image — the compose canvas returns instead.)*
 
 ---
 
@@ -216,9 +218,9 @@ A section near the bottom covers "rule panel" texts that live as static markup i
 
 *(Trames — post-play narration, after the player finishes composing)*
 
-1. You see it now. Each grid alone is nothing but order. Stack them — order upon order — and complexity appears that no single grid contains.
-2. That was François's insight, and mine, and our whole circle's: a system, followed strictly, can still surprise its maker. We were not lone inventors — we were a handful of people in Paris, asking the same question in different ways.
-3. He found his answer in laying order over order. I was about to find mine somewhere else — not in stacking order, but in disturbing it. Let me show you.
+1. You see it now. Each grid alone is nothing but order. Stack them — order upon order — and complexity appears that no single grid contains. That was François's answer.
+2. It belonged to our whole circle, in truth: the discovery that a system, followed strictly, can still surprise the one who made it. We were not lone inventors — we were a handful of people in Paris, asking the same question in different ways.
+3. But now, let me return to my own way. François left every grid intact and stacked them. I did the opposite: I took a single grid — and disturbed it. That is the last thing I want to show you.
 
 ---
 
@@ -273,6 +275,8 @@ A section near the bottom covers "rule panel" texts that live as static markup i
 **Keyed to OD_VOICE line 5 (index 4) — Rectangles:**
 - **eyebrow:** Vera Molnár — Rectangles, 1977–81
 - **caption:** Order loosened by hand. This is the territory you are about to enter — finding the exact amount of disorder that feels alive.
+
+*(A line was briefly prepended to OD_VOICE to explicitly bridge from Trames, then removed — TRAMES_POST line 3 already makes that pivot right before the transition screen, so the extra line doubled the beat. OD_VOICE is back to 6 lines, opening on "You may have noticed something..."; these keys point at the same three lines they always have.)*
 
 ---
 

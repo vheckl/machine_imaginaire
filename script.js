@@ -1330,7 +1330,6 @@ let odVoiceIdx = 0;
 let odVersions = [];
 
 const OD_VOICE = [
-  "That was François's way with the grid. Now, back to mine — where the grid itself begins to break.",
   "You may have noticed something in the games you just played. The grid was strict — but what landed in each cell was left to chance. That is where I began.",
   "For a long time, that was my way: keep the grid, and disturb only what sits inside it.",
   "But I did not stop there. Slowly I grew bolder, and began to disturb the structure itself — to let the grid loosen, bend, break its own regularity. The order I had built so carefully, I now let come apart, by degrees.",
@@ -1759,15 +1758,15 @@ const MOLNAR_WORKS = [
 ];
 
 // Which narration lines show inspiration, and what caption + which works.
-// Keyed by odVoiceIdx. (OD_VOICE has 7 lines, indices 0–6.)
+// Keyed by odVoiceIdx. (OD_VOICE has 6 lines, indices 0–5.)
 const OD_INSPIRE_BY_LINE = {
-  2: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
+  1: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
        works:[0],
        caption:'A field of lines, then some rotated and erased at random. The order is disturbed — never destroyed — and that is what makes it come alive.' },
-  3: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
+  2: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
        works:[1],
        caption:'Concentric squares, slightly displaced. The disturbance is never arbitrary: how much, and where it falls, is decided by a rule.' },
-  5: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
+  4: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
        works:[2],
        caption:'Order loosened by hand. This is the territory you are about to enter — finding the exact amount of disorder that feels alive.' },
 };
