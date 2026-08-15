@@ -712,10 +712,24 @@ function advanceArtwork(){
 function goBackArtwork(e){e.stopPropagation();if(artworkIdx>0){artworkIdx--;renderArtworkVoice();}}
 
 // ── S-TRAMES: SUPERIMPOSITION (Morellet) ──
-// NOTE: narration below is placeholder — [Placeholder] lines are stand-ins for the real
-// Molnár-voice narration, to be written in a follow-up pass.
-const TRAMES_PRE=["[Placeholder] Introduce Morellet's Trames — superimposed grids of fine parallel lines."];
-const TRAMES_POST=["[Placeholder] Closing reflection on interference and superimposition, before the final game."];
+const TRAMES_PRE=[
+  "The method you are about to use is not only mine. It belonged to a friend of mine — François Morellet. I met him in 1957, and a few years later we founded a group together, GRAV, with others who thought as we did.",
+  "We were after the same thing from different directions: to take our own hands out of the work, and let rules decide instead of taste. François did it with something beautifully simple — grids.",
+  "He would take a screen of fine parallel lines, perfectly ordered, and lay another over it, turned to a chosen angle. Then perhaps a third. Nothing in any single grid is disordered — but where they cross, something appears that is in none of them.",
+  "He titled his works by their angles — 0°, 22.5°, 45°, 67.5° — because the angles were the composition. Now compose one yourself: choose your angles, and lay the grids over one another.",
+];
+const TRAMES_POST=[
+  "You see it now. Each grid alone is nothing but order. Stack them — order upon order — and complexity appears that no single grid contains.",
+  "That was François's insight, and mine, and our whole circle's: a system, followed strictly, can still surprise its maker. We were not lone inventors — we were a handful of people in Paris, asking the same question in different ways.",
+  "He found his answer in laying order over order. I was about to find mine somewhere else — not in stacking order, but in disturbing it. Let me show you.",
+];
+// Morellet reference works, shown large (same slot as the compose canvas) during the
+// TRAMES_PRE lines that cue them — keyed by line index. Lines with no entry here
+// show the compose canvas instead.
+const TRM_IMAGE_BY_LINE={
+  0:{ boxId:'trm-morellet-img-box-lg-1', caption:'François Morellet, <em>Trames</em>, 1971. Silkscreen, 60 × 60 cm.' },
+  1:{ boxId:'trm-morellet-img-box-lg-2', caption:'François Morellet, from the <em>Trames</em> series. Superimposed line screens.' },
+};
 let trmPreIdx=0,trmPostIdx=0,trmPhase='pre';
 // The composition is a stack of grid angles. trmGrids[0] is always the fixed
 // 0° base grid — "remove last" and "start over" never touch index 0.
@@ -726,8 +740,24 @@ const TRM_INK='rgba(10,10,10,1)',TRM_HIGHLIGHT='rgba(124,58,237,1)';
 const TRM_HIGHLIGHT_MS=600;
 let trmGrids=[0];
 let trmHighlightTimer=null;
-const TRM_PROMPT_STAGE1="[Placeholder] One grid. Perfect order. No interference — yet.";
+const TRM_PROMPT_STAGE1="One grid. Fine parallel lines, perfectly regular. On its own, nothing but order.";
 const TRM_PROMPT_STAGE2="Choose an angle. Lay a grid over the last. Build your superimposition — the way Morellet did.";
+
+function trmShowMorelletLine(){
+  const cfg=TRM_IMAGE_BY_LINE[trmPreIdx];
+  const display=document.getElementById('trm-morellet-display');
+  const area=document.getElementById('trm-area');
+  if(!cfg){
+    if(display)display.style.display='none';
+    if(area)area.style.display='';
+    return;
+  }
+  if(area)area.style.display='none';
+  if(display)display.style.display='flex';
+  document.getElementById('trm-morellet-img-box-lg-1').style.display=cfg.boxId==='trm-morellet-img-box-lg-1'?'flex':'none';
+  document.getElementById('trm-morellet-img-box-lg-2').style.display=cfg.boxId==='trm-morellet-img-box-lg-2'?'flex':'none';
+  document.getElementById('trm-morellet-caption-lg').innerHTML=cfg.caption;
+}
 
 function startTrames(){
   trmPreIdx=0;trmPostIdx=0;trmPhase='pre';
@@ -751,6 +781,7 @@ function renderTrmPre(){
   document.getElementById('trm-pre-tap').textContent=isLast?'click to begin composing →':'click to continue';
   const b=document.getElementById('trm-pre-back');if(b)b.disabled=trmPreIdx===0;
   setSectionProg('trm-prog-fill','trm-prog-label',trmPreIdx+1,TRAMES_PRE.length);
+  trmShowMorelletLine();
 }
 function advanceTrmPre(){
   if(trmPreIdx<TRAMES_PRE.length-1){trmPreIdx++;renderTrmPre();}
@@ -760,6 +791,9 @@ function advanceTrmPre(){
     document.getElementById('trm-play-card').style.display='';
     document.getElementById('trm-controls').style.display='';
     document.getElementById('trm-prompt').textContent=TRM_PROMPT_STAGE2;
+    const display=document.getElementById('trm-morellet-display');
+    if(display)display.style.display='none';
+    document.getElementById('trm-area').style.display='';
     setSectionProg('trm-prog-fill','trm-prog-label',1,1);
     trmUpdateButtons();
     drawTrames(false);
@@ -849,7 +883,16 @@ function renderTrmPost(){
 function advanceTrmPost(){
   if(trmPostIdx<TRAMES_POST.length-1){trmPostIdx++;renderTrmPost();}
   else{
-    showLevelTransition('Trames complete','Order & Disturbance','07 — Design your own algorithm',()=>startFreeComp(),'free');
+    showAppreciate({
+      eyebrow:'You composed a Trames',
+      title:'Order upon order.',
+      sub:'Four grids, four angles — none of them disordered, and none of them alone would have made this.',
+      sourceCanvas:document.getElementById('trm-canvas'),
+      yourCap:'Your composition — Trames',
+      accent:'#7c3aed',
+      molnar:{ show:true, src:'images/morellet-trames.jpg', caption:'François Morellet, Trames, 1971.', placeholderText:'[ insert Morellet\'s Trames (1971): name it morellet-trames.jpg ]' },
+      onContinue:()=>showLevelTransition('Trames complete','Order & Disturbance','07 — Design your own algorithm',()=>startFreeComp(),'free')
+    });
   }
 }
 function goBackTrmPost(e){e.stopPropagation();if(trmPostIdx>0){trmPostIdx--;renderTrmPost();}}

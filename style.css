@@ -1482,6 +1482,35 @@ html,body { width:100%;height:100%;background:var(--black);
   font-size:14px;font-weight:300;color:rgba(0,0,0,0.5);
   text-align:center;max-width:420px;line-height:1.55;
 }
+
+/* Large Morellet reference display — same slot/pattern as the Molnár chapters'
+   reference-artwork displays (e.g. .od-inspire): shown during specific TRAMES_PRE
+   lines, replacing the compose canvas rather than sitting shrunk beside it. */
+.trm-morellet-display {
+  position:absolute;top:36px;left:0;right:0;bottom:150px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:16px;z-index:5;
+}
+.trm-morellet-eyebrow {
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(124,58,237,0.7);text-align:center;
+}
+.trm-morellet-img-box-lg {
+  width:min(440px,60vh,80vw);height:min(440px,60vh,80vw);
+  background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.2);
+  display:flex;align-items:center;justify-content:center;overflow:hidden;padding:14px;
+}
+.trm-morellet-placeholder-lg { display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px;text-align:center; }
+.trm-morellet-placeholder-lbl {
+  font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.06em;
+  text-transform:uppercase;color:rgba(124,58,237,0.5);line-height:1.7;
+}
+.trm-morellet-caption-lg {
+  font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.04em;
+  color:rgba(0,0,0,0.55);text-align:center;line-height:1.5;
+}
+.trm-morellet-caption-lg em { font-style:italic; }
+
 .trm-controls { display:flex;flex-direction:column;gap:12px;align-items:center;width:min(420px,90vw); }
 .trm-angle-row { display:flex;gap:6px;flex-wrap:wrap;justify-content:center; }
 .trm-angle-btn {

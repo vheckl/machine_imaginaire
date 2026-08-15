@@ -518,6 +518,25 @@
     <div class="bg-grid"></div>
     <div class="scene-heading">06 — Superimposition</div>
 
+    <!-- Morellet reference display — shown large during TRAMES_PRE lines that cue an image,
+         same slot/pattern as the Molnár chapters' reference-artwork displays. -->
+    <div class="trm-morellet-display" id="trm-morellet-display" style="display:none;">
+      <div class="trm-morellet-eyebrow" id="trm-morellet-eyebrow">François Morellet</div>
+      <div class="trm-morellet-img-box-lg" id="trm-morellet-img-box-lg-1">
+        <img id="trm-morellet-img-1" src="images/morellet-trames.jpg" alt="François Morellet, Trames, 1971" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"/>
+        <div class="trm-morellet-placeholder-lg">
+          <div class="trm-morellet-placeholder-lbl">François Morellet<br>Trames, 1971<br>[name: morellet-trames.jpg]</div>
+        </div>
+      </div>
+      <div class="trm-morellet-img-box-lg" id="trm-morellet-img-box-lg-2" style="display:none;">
+        <img id="trm-morellet-img-2" src="images/morellet-trames-2.jpg" alt="François Morellet, from the Trames series" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:none;" onload="this.style.display='block';this.nextElementSibling.style.display='none';" onerror="this.style.display='none';"/>
+        <div class="trm-morellet-placeholder-lg">
+          <div class="trm-morellet-placeholder-lbl">François Morellet<br>from the Trames series<br>[name: morellet-trames-2.jpg]</div>
+        </div>
+      </div>
+      <div class="trm-morellet-caption-lg" id="trm-morellet-caption-lg"></div>
+    </div>
+
     <div class="trm-area" id="trm-area">
       <div class="trm-canvas-wrap">
         <canvas id="trm-canvas" width="400" height="400"></canvas>
@@ -559,7 +578,8 @@
       <!-- PLAY: continue button -->
       <div id="trm-play-card" style="display:none;">
         <div class="trm-play-card">
-          <div class="trm-play-hint">[Placeholder] Add at least one more grid, then continue.</div>
+          <div class="trm-play-hint">Add at least one more grid, then continue.</div>
+          <button class="skip-game-btn" onclick="showLevelTransition('Game skipped','Order &amp; Disturbance','07 — Design your own algorithm',()=>startFreeComp(),'free')" style="padding:0 10px;flex-shrink:0;">Skip game →</button>
           <button class="trm-continue-btn" id="trm-continue-btn" onclick="trmContinue()" disabled>Continue →</button>
         </div>
       </div>
