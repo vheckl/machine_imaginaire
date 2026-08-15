@@ -871,6 +871,7 @@ function trmContinue(){
   if(trmGrids.length<2)return;
   trmPhase='post';trmPostIdx=0;
   document.getElementById('trm-play-card').style.display='none';
+  document.getElementById('trm-controls').style.display='none';
   document.getElementById('trm-post-card').style.display='';
   drawCompassMotif('compass-motif-trm-post','#7c3aed');
   renderTrmPost();
