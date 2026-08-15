@@ -16,6 +16,8 @@ const gallerySlots=[
    dest:'game1', destLabel:'\u2192 Play Game 1', destFn:'startGame1'},
   {label:'Inclinaisons',hint:'Inclinaisons — not played yet',unlocked:false,data:null,
    dest:'incl', destLabel:'\u2192 Play Inclinaisons', destFn:'startInclGame'},
+  {label:'Trames',hint:'Trames — not composed yet',unlocked:false,data:null,
+   dest:'trames', destLabel:'\u2192 Play Trames', destFn:'startTrames'},
   {label:'Your algorithm',hint:'Your algorithm — not made yet',unlocked:false,data:null,
    dest:'free', destLabel:'\u2192 Your algorithm', destFn:'startFreeComp'},
 ];
@@ -883,6 +885,7 @@ function renderTrmPost(){
 function advanceTrmPost(){
   if(trmPostIdx<TRAMES_POST.length-1){trmPostIdx++;renderTrmPost();}
   else{
+    unlockGallerySlot(2, document.getElementById('trm-canvas'));
     showAppreciate({
       eyebrow:'You composed a Trames',
       title:'Order upon order.',
@@ -1573,7 +1576,7 @@ function odSave() {
   const n = odVersions.length + 1;
   const dataUrl = cv.toDataURL();
   odVersions.push({ n, dataUrl });
-  unlockGallerySlot(2, cv);
+  unlockGallerySlot(3, cv);
   const list = document.getElementById('od-versions');
   const item = document.createElement('div'); item.className = 'od-ver-item';
   const thumb = document.createElement('canvas'); thumb.className='od-ver-thumb'; thumb.width=28; thumb.height=28;
@@ -1602,13 +1605,13 @@ function odSave() {
     });
   }
 }
-function odPDF(n, dataUrl) {
+// Shared print-to-PDF window -- used by odPDF (per-version download in the OD
+// versions list) and downloadSlotAsPDF (the gallery's per-slot download).
+function printCompositionPDF(opts){
   const win = window.open('', '_blank'); if(!win) return;
   const date = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
-  const whatList = Object.keys(odState.what).filter(k=>odState.what[k]).join(', ');
-  const params = `${odState.elem} · disturbance ${odState.amount}% · ${odState.rule} · deviates: ${whatList} · grid ${odState.gridN}\u00D7${odState.gridN}`;
   win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>Machine Imaginaire — Version ${n}</title>
+<title>Machine Imaginaire — ${opts.title}</title>
 <style>@page{size:A4;margin:40mm 30mm;}
 body{font-family:'DM Sans',sans-serif;color:#0a0a0a;margin:0;}
 .hd{font-family:monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#999;margin-bottom:24px;}
@@ -1618,12 +1621,47 @@ img{display:block;width:220px;height:220px;border:1px solid rgba(0,0,0,0.08);}
 .ca{font-family:monospace;font-size:8px;color:#aaa;margin-top:12px;}
 </style></head><body>
 <div class="hd">Machine Imaginaire</div>
-<div class="ti">Order and its disturbance — Version ${n}</div>
-<div class="pr">${params} · ${date}</div>
-<img src="${dataUrl}"/>
-<div class="ca">Player composition · After Vera Molnár</div>
+<div class="ti">${opts.title}</div>
+<div class="pr">${opts.params} · ${date}</div>
+<img src="${opts.dataUrl}"/>
+<div class="ca">${opts.caption}</div>
 </body></html>`);
   win.document.close(); setTimeout(()=>win.print(), 400);
+}
+
+function odPDF(n, dataUrl) {
+  const whatList = Object.keys(odState.what).filter(k=>odState.what[k]).join(', ');
+  const params = `${odState.elem} · disturbance ${odState.amount}% · ${odState.rule} · deviates: ${whatList} · grid ${odState.gridN}\u00D7${odState.gridN}`;
+  printCompositionPDF({
+    title: `Order and its disturbance — Version ${n}`,
+    params,
+    caption: 'Player composition · After Vera Molnár',
+    dataUrl,
+  });
+}
+
+// Gallery slot download -- one PDF per finished chapter, using that slot's
+// stored composition. Same output style as odPDF, just per-chapter params/caption.
+function downloadSlotAsPDF(idx){
+  const slot = gallerySlots[idx];
+  if(!slot || !slot.unlocked || !slot.data) return;
+  let title = slot.label, params = '', caption = 'Player composition · After Vera Molnár';
+  if(idx === 0){ // Game 1
+    title = 'Game 1 — odd & even';
+    params = '25 cells · odd → mark, even → empty';
+  } else if(idx === 1){ // Inclinaisons
+    title = 'Inclinaisons';
+    params = '25 cells · dice roll → lookup table → orientation';
+  } else if(idx === 2){ // Trames
+    title = 'Trames';
+    params = 'Grids: ' + trmGrids.map(trmFormatAngle).join(' – ');
+    caption = 'Player composition · After François Morellet';
+  } else if(idx === 3){ // Order & Disturbance
+    const whatList = Object.keys(odState.what).filter(k=>odState.what[k]).join(', ');
+    title = 'Order and its disturbance';
+    params = `${odState.elem} · disturbance ${odState.amount}% · ${odState.rule} · deviates: ${whatList} · grid ${odState.gridN}\u00D7${odState.gridN}`;
+  }
+  printCompositionPDF({ title, params, caption, dataUrl: slot.data });
 }
 
 // ── Final card (bridge from artwork to the final game) ──

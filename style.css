@@ -64,14 +64,14 @@ html,body { width:100%;height:100%;background:var(--black);
 #gallery-overlay { display:none;position:fixed;inset:0;background:rgba(10,10,10,0.96);
   z-index:400;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px; }
 #gallery-overlay.open { display:flex; }
-.gallery-inner { width:min(720px,94vw);display:flex;flex-direction:column;gap:24px; }
+.gallery-inner { width:min(900px,94vw);display:flex;flex-direction:column;gap:24px; }
 .gallery-header { display:flex;justify-content:space-between;align-items:baseline; }
 .gallery-title { font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.16em;
   text-transform:uppercase;color:rgba(255,255,255,0.4); }
 .gallery-close { font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.12em;
   text-transform:uppercase;color:rgba(255,255,255,0.3);background:none;border:none;cursor:pointer; }
 .gallery-close:hover { color:#fff; }
-.gallery-slots { display:grid;grid-template-columns:repeat(3,1fr);gap:16px; }
+.gallery-slots { display:grid;grid-template-columns:repeat(4,1fr);gap:16px; }
 .gallery-slot { aspect-ratio:1;background:rgba(255,255,255,0.03);
   border:1px solid rgba(255,255,255,0.08);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
