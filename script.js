@@ -715,22 +715,22 @@ function goBackArtwork(e){e.stopPropagation();if(artworkIdx>0){artworkIdx--;rend
 
 // ── S-TRAMES: SUPERIMPOSITION (Morellet) ──
 const TRAMES_PRE=[
-  "The method you are about to use is not only mine. It belonged to a friend of mine — François Morellet. I met him in 1957, and a few years later we founded a group together, GRAV, with others who thought as we did.",
-  "We were after the same thing from different directions: to take our own hands out of the work, and let rules decide instead of taste. François did it with something beautifully simple — grids.",
-  "He would take a screen of fine parallel lines, perfectly ordered, and lay another over it, turned to a chosen angle. Then perhaps a third. Nothing in any single grid is disordered — but where they cross, something appears that is in none of them.",
-  "He titled his works by their angles — 0°, 22.5°, 45°, 67.5° — because the angles were the composition. Now compose one yourself: choose your angles, and lay the grids over one another.",
+  "I was among the first to work this way — but I was not alone. In Paris in those years, a handful of us were circling the same questions: order, system, chance, the removal of the artist's hand. We did not all answer them the same way.",
+  "One of us was my old friend François Morellet. I met him in 1957; a few years later we founded a group together, GRAV. We shared a starting point — let the rule decide, not the taste — but from there, we diverged.",
+  "You have spent these games with the grid — filling it, reading it, executing it. I would go on to disturb the grid. But François did something different: he kept each grid perfectly intact, and simply laid one over another, turned to an angle. Where they cross, something appears that is in neither.",
+  "He titled his works by their angles — 0°, 22.5°, 45°, 67.5° — because the angles were the whole composition. Try his way yourself: choose your angles, and lay the grids over one another.",
 ];
 const TRAMES_POST=[
-  "You see it now. Each grid alone is nothing but order. Stack them — order upon order — and complexity appears that no single grid contains.",
-  "That was François's insight, and mine, and our whole circle's: a system, followed strictly, can still surprise its maker. We were not lone inventors — we were a handful of people in Paris, asking the same question in different ways.",
-  "He found his answer in laying order over order. I was about to find mine somewhere else — not in stacking order, but in disturbing it. Let me show you.",
+  "You see it now. Each grid alone is nothing but order. Stack them — order upon order — and complexity appears that no single grid contains. That was François's answer.",
+  "It belonged to our whole circle, in truth: the discovery that a system, followed strictly, can still surprise the one who made it. We were not lone inventors — we were a handful of people in Paris, asking the same question in different ways.",
+  "But now, let me return to my own way. François left every grid intact and stacked them. I did the opposite: I took a single grid — and disturbed it. That is the last thing I want to show you.",
 ];
 // Morellet reference works, shown large (same slot as the compose canvas) during the
 // TRAMES_PRE lines that cue them — keyed by line index. Lines with no entry here
 // show the compose canvas instead.
 const TRM_IMAGE_BY_LINE={
-  0:{ boxId:'trm-morellet-img-box-lg-1', caption:'François Morellet, <em>Trames</em>, 1971. Silkscreen, 60 × 60 cm.' },
-  1:{ boxId:'trm-morellet-img-box-lg-2', caption:'François Morellet, from the <em>Trames</em> series. Superimposed line screens.' },
+  1:{ boxId:'trm-morellet-img-box-lg-1', caption:'François Morellet, <em>Trames</em>, 1971. Silkscreen, 60 × 60 cm.' },
+  2:{ boxId:'trm-morellet-img-box-lg-2', caption:'François Morellet, from the <em>Trames</em> series. Superimposed line screens.' },
 };
 let trmPreIdx=0,trmPostIdx=0,trmPhase='pre';
 // The composition is a stack of grid angles. trmGrids[0] is always the fixed
@@ -1330,6 +1330,7 @@ let odVoiceIdx = 0;
 let odVersions = [];
 
 const OD_VOICE = [
+  "That was François's way with the grid. Now, back to mine — where the grid itself begins to break.",
   "You may have noticed something in the games you just played. The grid was strict — but what landed in each cell was left to chance. That is where I began.",
   "For a long time, that was my way: keep the grid, and disturb only what sits inside it.",
   "But I did not stop there. Slowly I grew bolder, and began to disturb the structure itself — to let the grid loosen, bend, break its own regularity. The order I had built so carefully, I now let come apart, by degrees.",
@@ -1758,15 +1759,15 @@ const MOLNAR_WORKS = [
 ];
 
 // Which narration lines show inspiration, and what caption + which works.
-// Keyed by odVoiceIdx. (OD_VOICE has 6 lines, indices 0–5.)
+// Keyed by odVoiceIdx. (OD_VOICE has 7 lines, indices 0–6.)
 const OD_INSPIRE_BY_LINE = {
-  1: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
+  2: { eyebrow:'Vera Molnár — Interruptions, ca. 1968/69',
        works:[0],
        caption:'A field of lines, then some rotated and erased at random. The order is disturbed — never destroyed — and that is what makes it come alive.' },
-  2: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
+  3: { eyebrow:'Vera Molnár — (Des)Ordres, 1974',
        works:[1],
        caption:'Concentric squares, slightly displaced. The disturbance is never arbitrary: how much, and where it falls, is decided by a rule.' },
-  4: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
+  5: { eyebrow:'Vera Molnár — Rectangles, 1977–81',
        works:[2],
        caption:'Order loosened by hand. This is the territory you are about to enter — finding the exact amount of disorder that feels alive.' },
 };
