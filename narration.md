@@ -228,7 +228,7 @@ A section near the bottom covers "rule panel" texts that live as static markup i
 
 - **eyebrow:** You composed a Trames
 - **title:** Order upon order.
-- **sub:** Four grids, four angles — none of them disordered, and none of them alone would have made this.
+- **sub:** *(dynamic)* `{N} grids, {N} angles — none of them disordered, and none of them alone would have made this.` — N is however many grids the player actually stacked (2–4).
 - **yourCap:** Your composition — Trames
 - **molnar.caption:** François Morellet, Trames, 1971.
 - **molnar.placeholderText:** [ insert Morellet's Trames (1971): name it morellet-trames.jpg ]

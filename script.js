@@ -886,7 +886,7 @@ function advanceTrmPost(){
     showAppreciate({
       eyebrow:'You composed a Trames',
       title:'Order upon order.',
-      sub:'Four grids, four angles — none of them disordered, and none of them alone would have made this.',
+      sub:`${trmGrids.length} grids, ${trmGrids.length} angles — none of them disordered, and none of them alone would have made this.`,
       sourceCanvas:document.getElementById('trm-canvas'),
       yourCap:'Your composition — Trames',
       accent:'#7c3aed',
