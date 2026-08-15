@@ -2,7 +2,9 @@
 
 All narrator/voice, instructional, and caption text pulled from `script.js`, in gameplay order. Game logic, IDs, CSS, and generic interaction chrome ("click to continue", "click dice to roll", "skip game", etc.) are omitted.
 
-A final section at the bottom covers the three new "rule panel" texts — these actually live as static markup in `index.html`, not in a JS array, so they're flagged separately.
+A section near the bottom covers "rule panel" texts that live as static markup in `index.html`, not in a JS array, so they're flagged separately. A final appendix covers dead/unreachable code that still exists in `script.js` but is never shown to players.
+
+*(Last refreshed after the Trames/Morellet chapter build-out — covers G1_POST's bridge line, the trimmed SKETCH_STEPS/RAND_LINES, the rewritten INCL_POST and OD_VOICE, and everything new in the Trames chapter.)*
 
 ---
 
@@ -60,6 +62,7 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 1. You just executed a program.
 2. The rule existed before you picked up the pencil. The result followed from it completely.
 3. This is where I started — long before I had access to a computer. The algorithm on paper, myself as the processor.
+4. That was the simplest rule I could give you — one number, one decision. Now let me show you a real one, from 1971. The same idea, but with more steps between you and the mark.
 
 ---
 
@@ -93,13 +96,14 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 3. Look at the writing in the top right, in my own hand: 'blancs 20%, 8 inclinaisons 10% pour chaque.' It means: leave 20 percent of the cells blank, and use eight possible line orientations, each appearing 10 percent of the time. Those two sentences are the complete instructions. Nothing else decides the image.
 4. Beneath the writing is a compass wheel. I drew the eight orientations and numbered them 1 through 8 — from horizontal, turning step by step toward vertical. Each direction was given exactly the same chance. I did not let any angle dominate, because the moment one does, it becomes a preference — and preference is exactly what I was trying to remove.
 5. And below the compass is the lookup table. This is the heart of it: a number comes in, and the table tells you which of the eight orientations to draw. No interpretation. The number maps to an angle, the angle goes in the cell. That mechanical step — number to angle — is the whole algorithm, written out by hand before any computer touched it.
-6. But to run it, I needed a number for every single cell — genuine randomness, from outside myself. Not something I calculated.
-7. That turned out to be harder than it sounds. In the 1960s you could not simply ask for one. I found two very different sources — I'll show you both in a moment.
-8. Then the execution itself: one number, one decision, one line. An arrow from the table to the grid. No hesitation, no stepping back to reconsider. The algorithm does not have second thoughts — and while I followed it, neither could I.
-9. I found this liberating, not limiting. I had spent years trying to escape my own taste — the habits I learned in art school, the reflexes of my culture. The rule let me make marks I would never have chosen, and discover they were beautiful anyway.
-10. Cell by cell, the grid filled slowly. What emerged was something I could not have pictured in advance — and yet I had specified every part of how it was made. Both things are true at once. That is the puzzle I spent my life inside.
-11. So: does a pattern made entirely by rule still carry my signature? I have never fully answered it. The computer helped me ask the question more sharply. It did not answer it for me.
-12. Now it is your turn. You will execute exactly this algorithm — roll for a number, read the table, place the line. You will be the machine.
+6. But to run it, I needed a number for every single cell — genuine randomness, from outside myself. Where I found it is a story in itself, which comes next.
+7. Then the execution itself: one number, one decision, one line. An arrow from the table to the grid. No hesitation, no stepping back to reconsider. The algorithm does not have second thoughts — and while I followed it, neither could I.
+8. I found this liberating, not limiting. I had spent years trying to escape my own taste — the habits I learned in art school, the reflexes of my culture. The rule let me make marks I would never have chosen, and discover they were beautiful anyway.
+9. Cell by cell, the grid filled slowly. What emerged was something I could not have pictured in advance — and yet I had specified every part of how it was made. Both things are true at once. That is the puzzle I spent my life inside.
+10. So: does a pattern made entirely by rule still carry my signature? I have never fully answered it. The computer helped me ask the question more sharply. It did not answer it for me.
+11. Now it is your turn. You will execute exactly this algorithm — roll for a number, read the table, place the line. You will be the machine.
+
+*(Previously 12 lines — the two randomness-teaser lines were merged into line 6 to avoid repeating what RAND_LINES says next.)*
 
 ---
 
@@ -111,9 +115,9 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 2. This was not a trivial problem. In the 1950s and 60s, randomness was expensive. You had to buy it.
 3. The RAND Corporation published one million random digits in 1955. A physical book. You looked up a page, picked a row, read the numbers. Scientists, statisticians, military researchers — they all used it. It sat on shelves next to dictionaries.
 4. My colleague François Morellet had a cheaper solution. He used a telephone directory. Any sequence of digits that nobody had arranged on purpose would do.
-5. What both methods share: the numbers came from outside the system. No formula. No pattern. Pure external input.
-6. A computer cannot do this. What computers call 'random' is a formula — a calculation that produces numbers which look unpredictable but follow a precise sequence. Give it the same starting point and it will produce exactly the same numbers every time.
-7. This is why we are using dice in this game — a convention we invented to make the process tangible. We do not know exactly how Molnár sourced her numbers. What matters is the principle: something external to the algorithm, something it cannot predict.
+5. Both share one thing: the numbers came from outside the system. A computer cannot truly do this — what it calls 'random' is a formula that only imitates chance. We use dice here for the same reason: something real, outside the rule, that the algorithm cannot predict.
+
+*(Previously 7 lines — the three closing lines were merged into line 5.)*
 
 ---
 
@@ -133,7 +137,7 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 *(Inclinaisons — post-play narration)*
 
 1. You executed the algorithm. The composition is yours — but it is also not yours.
-2. Look at what the rule produced. The distribution is almost even. Not because you controlled it — because the rule guaranteed it.
+2. You made every mark. Yet you could not have planned how it would look. That gap — between doing and choosing — is the whole subject.
 
 ---
 
@@ -161,17 +165,83 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 
 ---
 
-## ENDING_LINES
+## Level transition — Inclinaisons → Trames (showLevelTransition)
 
-*(Reflection comparing Game 1 and Inclinaisons)*
+*(One-off strings. No narration line here by design — no transition screen in the app shows one, so the "Morellet as source, not stranger" framing lives in TRAMES_PRE line 1 instead.)*
 
-1. Look at the two grids. Same rules. Same logic. Different results.
-2. You made both of them. But they look different. Why?
-3. In the first game, the rule was simple. A binary decision — mark or empty. Your hand followed it exactly.
-4. In the second, the rule was more complex. Eight orientations, a lookup table, a pair of dice. More steps between intention and execution.
-5. The more steps, the more the algorithm speaks. The more it becomes itself, and less you.
-6. This is what I spent my career trying to understand. Not to eliminate the human — but to see it more clearly.
-7. I never thought the algorithm was smarter than me. I thought it was more honest about what it did not know.
+- **complete:** Inclinaisons complete
+- **title:** Trames
+- **sub:** 06 — Superimposition
+
+---
+
+## TRAMES_PRE
+
+*(s-trames — Morellet/GRAV intro narration, before the compose-a-Trames game)*
+
+1. The method you are about to use is not only mine. It belonged to a friend of mine — François Morellet. I met him in 1957, and a few years later we founded a group together, GRAV, with others who thought as we did.
+2. We were after the same thing from different directions: to take our own hands out of the work, and let rules decide instead of taste. François did it with something beautifully simple — grids.
+3. He would take a screen of fine parallel lines, perfectly ordered, and lay another over it, turned to a chosen angle. Then perhaps a third. Nothing in any single grid is disordered — but where they cross, something appears that is in none of them.
+4. He titled his works by their angles — 0°, 22.5°, 45°, 67.5° — because the angles were the composition. Now compose one yourself: choose your angles, and lay the grids over one another.
+
+---
+
+## TRM_IMAGE_BY_LINE
+
+*(Morellet reference artworks, shown large — same slot as the compose canvas — during specific TRAMES_PRE lines)*
+
+**Keyed to TRAMES_PRE line 1 (index 0):**
+- **caption:** François Morellet, *Trames*, 1971. Silkscreen, 60 × 60 cm.
+- image file: `morellet-trames.jpg`
+
+**Keyed to TRAMES_PRE line 2 (index 1):**
+- **caption:** François Morellet, from the *Trames* series. Superimposed line screens.
+- image file: `morellet-trames-2.jpg`
+
+*(Lines 3–4 show no image — the compose canvas returns instead.)*
+
+---
+
+## Trames — compose-phase prompts
+
+*(One-off strings, shown near the canvas rather than in the voice-card)*
+
+- **TRM_PROMPT_STAGE1** *(shown throughout TRAMES_PRE, alongside the base grid alone):* One grid. Fine parallel lines, perfectly regular. On its own, nothing but order.
+- **TRM_PROMPT_STAGE2** *(shown once the player reaches the compose phase):* Choose an angle. Lay a grid over the last. Build your superimposition — the way Morellet did.
+- **trm-play-hint** *(bottom bar during the compose phase):* Add at least one more grid, then continue.
+
+---
+
+## TRAMES_POST
+
+*(Trames — post-play narration, after the player finishes composing)*
+
+1. You see it now. Each grid alone is nothing but order. Stack them — order upon order — and complexity appears that no single grid contains.
+2. That was François's insight, and mine, and our whole circle's: a system, followed strictly, can still surprise its maker. We were not lone inventors — we were a handful of people in Paris, asking the same question in different ways.
+3. He found his answer in laying order over order. I was about to find mine somewhere else — not in stacking order, but in disturbing it. Let me show you.
+
+---
+
+## Trames — appreciation screen (showAppreciate)
+
+*(One-off strings, shown right after TRAMES_POST)*
+
+- **eyebrow:** You composed a Trames
+- **title:** Order upon order.
+- **sub:** Four grids, four angles — none of them disordered, and none of them alone would have made this.
+- **yourCap:** Your composition — Trames
+- **molnar.caption:** François Morellet, Trames, 1971.
+- **molnar.placeholderText:** [ insert Morellet's Trames (1971): name it morellet-trames.jpg ]
+
+---
+
+## Level transition — Trames → Order & Disturbance (showLevelTransition)
+
+*(One-off strings. Same no-narration-line note as the Inclinaisons → Trames transition above — TRAMES_POST line 3 already delivers this beat right before the transition fires.)*
+
+- **complete:** Trames complete
+- **title:** Order & Disturbance
+- **sub:** 07 — Design your own algorithm
 
 ---
 
@@ -179,11 +249,12 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 
 *(s6 — Order & Disturbance, pre-play narration)*
 
-1. In the first games you followed strict rules — odd or even, a number to a direction. The rule decided everything. The result was pure order.
-2. And you won't need to memorize this one either — every choice you make here stays visible and adjustable while you work.
-3. But pure order is dead. A perfect grid says nothing. My real work began when I asked: what if I disturb the order — not by accident, but by another rule?
-4. Start from a perfect grid where every element is identical. Then introduce deviation — and decide how much, and where it falls. The disturbance itself obeys a rule you choose.
-5. I was never looking for chaos. I was looking for the exact moment order becomes alive. Now it is your turn to find it.
+1. You may have noticed something in the games you just played. The grid was strict — but what landed in each cell was left to chance. That is where I began.
+2. For a long time, that was my way: keep the grid, and disturb only what sits inside it.
+3. But I did not stop there. Slowly I grew bolder, and began to disturb the structure itself — to let the grid loosen, bend, break its own regularity. The order I had built so carefully, I now let come apart, by degrees.
+4. People asked why. Here is the truth: I love order. But I cannot bear it. I make mistakes. I stutter. I mix up my words. Perhaps my disorder came from this — from being a person, and not a machine.
+5. Still, I never wanted chaos. I let in only as much disorder as the work could hold — sometimes just one percent. Enough imperfection to make it breathe. And even the disorder followed a rule: in French I called one series (Dés)Ordres — 'disorders,' but also 'some orders.' Chance, but chance I had authored.
+6. Now it is yours. Begin with order. Then disturb what sits inside it — and, when you are ready, the grid itself. Decide how much, and where. Find the point where it stops being correct, and starts being alive.
 
 ---
 
@@ -191,11 +262,11 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 
 *(Molnár reference-artwork captions, shown alongside specific OD_VOICE lines during narration)*
 
-**Keyed to OD_VOICE line 3 (index 2) — Interruptions:**
+**Keyed to OD_VOICE line 2 (index 1) — Interruptions:**
 - **eyebrow:** Vera Molnár — Interruptions, ca. 1968/69
 - **caption:** A field of lines, then some rotated and erased at random. The order is disturbed — never destroyed — and that is what makes it come alive.
 
-**Keyed to OD_VOICE line 4 (index 3) — (Des)Ordres:**
+**Keyed to OD_VOICE line 3 (index 2) — (Des)Ordres:**
 - **eyebrow:** Vera Molnár — (Des)Ordres, 1974
 - **caption:** Concentric squares, slightly displaced. The disturbance is never arbitrary: how much, and where it falls, is decided by a rule.
 
@@ -219,7 +290,7 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 
 *(One-off string, set when the game controls are revealed after OD_VOICE finishes)*
 
-- The studio is yours — disturb, save, and download what you like.
+- The studio is yours. Every choice here stays visible and adjustable — nothing to memorize. Disturb, save, and download what you like.
 
 ---
 
@@ -238,7 +309,7 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 
 ## Rule panel text (⚠ lives in `index.html`, not `script.js`)
 
-*(The on-demand "show the rule" panels added to each game's play phase. These were written directly as static markup, not stored in a JS array — flagged here since they're still narrator/instructional voice content.)*
+*(The on-demand "show the rule" panels added to each game's play phase. These were written directly as static markup, not stored in a JS array — flagged here since they're still narrator/instructional voice content. Trames has no rule panel.)*
 
 **Game 1 — `#g1-rule-panel`:**
 - Odd number → place a mark. Even number → leave the cell empty. That's the whole rule — you never need to remember it, it's always right here.
@@ -250,3 +321,19 @@ A final section at the bottom covers the three new "rule panel" texts — these 
 
 **Order & Disturbance — `#od-rule-panel`:**
 - The Disturbance slider sets how much deviation to introduce. The buttons below it — Uniform, Progressive, Radial, Inverse — set where across the grid that deviation falls.
+
+---
+
+## Appendix: dead / unreachable content (⚠ not shown to players)
+
+*(This content still exists in `script.js` but nothing calls the functions that would display it — confirmed by the fact that its HTML element IDs don't exist anywhere in `index.html`. Kept here for completeness in case it's ever revived.)*
+
+**ENDING_LINES** *(would-be reflection comparing Game 1 and Inclinaisons, via a `goToEnding()`/scene `s7` that nothing calls):*
+
+1. Look at the two grids. Same rules. Same logic. Different results.
+2. You made both of them. But they look different. Why?
+3. In the first game, the rule was simple. A binary decision — mark or empty. Your hand followed it exactly.
+4. In the second, the rule was more complex. Eight orientations, a lookup table, a pair of dice. More steps between intention and execution.
+5. The more steps, the more the algorithm speaks. The more it becomes itself, and less you.
+6. This is what I spent my career trying to understand. Not to eliminate the human — but to see it more clearly.
+7. I never thought the algorithm was smarter than me. I thought it was more honest about what it did not know.
