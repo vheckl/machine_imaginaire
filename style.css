@@ -144,7 +144,7 @@ html,body { width:100%;height:100%;background:var(--black);
 /* ── Voice anchor ── */
 .voice-anchor { position:absolute;bottom:0;left:0;right:0;
   display:flex;flex-direction:column;align-items:center;padding-bottom:24px;z-index:20; }
-.section-prog-wrap { width:min(560px,90vw);margin-bottom:5px;display:flex;align-items:center;gap:8px; }
+.section-prog-wrap { width:min(760px,60vw);margin-bottom:5px;display:flex;align-items:center;gap:8px; }
 .section-prog-track { flex:1;height:2px;background:rgba(0,0,0,0.08); }
 .section-prog-fill { height:100%;background:var(--accent1,var(--blue));transition:width 0.35s ease; }
 .section-prog-label { font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;
@@ -152,10 +152,10 @@ html,body { width:100%;height:100%;background:var(--black);
 .voice-anchor.on-dark .section-prog-track { background:rgba(255,255,255,0.1); }
 .voice-anchor.on-dark .section-prog-label { color:rgba(255,255,255,0.25); }
 .compass-motif { margin-bottom:0; }
-.voice-card { background:#fff;width:min(560px,90vw);padding:18px 22px 16px;
+.voice-card { background:#fff;width:min(760px,60vw);padding:18px 22px 16px;
   border-top:3px solid var(--accent1,var(--blue));cursor:pointer;user-select:none; }
 #s3 .voice-card p, #s4 .voice-card p { max-height:none; }
-#s3 .voice-card { max-width:min(620px,90vw); }
+#s3 .voice-card { max-width:min(820px,64vw); }
 .voice-card p { font-size:clamp(14px,2.2vw,17px);font-weight:300;line-height:1.65;color:var(--black); }
 .voice-card p em { font-style:normal;color:var(--accent1,var(--blue));font-weight:500; }
 .voice-nav { display:flex;justify-content:space-between;align-items:center;margin-top:10px; }
@@ -220,7 +220,7 @@ html,body { width:100%;height:100%;background:var(--black);
 /* ── Algo explainer ── */
 .algo-main-area { position:absolute;top:36px;left:0;right:0;bottom:150px;
   display:flex;align-items:center;justify-content:center;padding:16px;z-index:5; }
-.algo-flow-box { width:min(460px,88vw);background:#fff;border:1px solid rgba(0,0,0,0.08);padding:14px; }
+.algo-flow-box { width:min(660px,60vw);background:#fff;border:1px solid rgba(0,0,0,0.08);padding:14px; }
 .algo-section-label { font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;
   text-transform:uppercase;color:var(--mid);margin-bottom:8px;display:block; }
 
@@ -228,7 +228,7 @@ html,body { width:100%;height:100%;background:var(--black);
 .game1-area {
   position:absolute;top:36px;left:0;right:0;bottom:150px;
   display:flex;align-items:center;justify-content:center;
-  padding:16px;z-index:5;gap:32px;flex-wrap:wrap;
+  padding:16px;z-index:5;gap:clamp(32px,4vw,80px);flex-wrap:wrap;
 }
 .game1-number-col { display:flex;flex-direction:column;align-items:center;gap:14px; }
 .game1-section-lbl { font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;
@@ -250,7 +250,7 @@ html,body { width:100%;height:100%;background:var(--black);
 .game1-btn:disabled { opacity:0.3;cursor:default; }
 .game1-btn-icon { font-size:18px;line-height:1; }
 .game1-grid-col { display:flex;flex-direction:column;align-items:center;gap:6px; }
-.game1-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:2px;width:min(200px,38vw);
+.game1-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:2px;width:min(420px,30vw,46vh);
   aspect-ratio:1; }
 .game1-cell { aspect-ratio:1;background:rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.07);
   display:flex;align-items:center;justify-content:center;transition:background 0.2s;
@@ -341,7 +341,7 @@ html,body { width:100%;height:100%;background:var(--black);
 .incl-grid-lbl { font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;
   text-transform:uppercase;color:var(--mid); }
 .incl-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
-  width:100%;max-width:min(280px,100%); }
+  width:100%;max-width:min(440px,100%,52vh); }
 .incl-cell { aspect-ratio:1;background:rgba(0,0,0,0.04);border:0.5px solid rgba(0,0,0,0.07);
   display:flex;align-items:center;justify-content:center;transition:background 0.2s; }
 .incl-cell.current { background:rgba(0,117,184,0.1);border-color:var(--accent1,#02874c); }
@@ -368,7 +368,7 @@ html,body { width:100%;height:100%;background:var(--black);
   border:1px solid rgba(0,117,184,0.15);background:rgba(0,117,184,0.03);gap:12px; }
 .artwork-placeholder-label { font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;
   text-transform:uppercase;color:rgba(0,0,0,0.3);text-align:center;line-height:1.8; }
-.artwork-img { display:block;max-height:calc(100vh - 220px);max-width:min(640px,88vw);
+.artwork-img { display:block;max-height:calc(100vh - 220px);max-width:min(900px,88vw);
   width:auto;height:auto;opacity:0;transition:opacity 1.2s ease; }
 .artwork-img.visible { opacity:1; }
 .artwork-caption { font-family:'DM Mono',monospace;font-size:12px;letter-spacing:0.08em;
@@ -399,7 +399,7 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .rand-img-wrap {
   display:flex;flex-direction:column;align-items:center;gap:6px;
-  width:min(300px,40vw);
+  width:min(420px,40vw);
 }
 .rand-img-box {
   width:100%;min-height:160px;max-height:340px;
@@ -428,8 +428,8 @@ html,body { width:100%;height:100%;background:var(--black);
 /* ── Inclinaisons game — centered + drag/drop fixes ── */
 .incl-game-area {
   position:absolute;top:36px;left:0;right:0;bottom:145px;
-  display:flex;align-items:flex-start;justify-content:center;
-  gap:14px;padding:10px 16px;z-index:5;
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(14px,2.5vw,56px);padding:10px 16px;z-index:5;
   /* override old grid */
   grid-template-columns:unset;
 }
@@ -445,7 +445,7 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .incl-right-col {
   display:flex;flex-direction:column;gap:6px;
-  flex:1;min-width:0;max-width:min(320px,42vw);
+  flex:1;min-width:0;max-width:min(460px,42vw);
 }
 
 /* Dice — numeral faces */
@@ -1190,8 +1190,8 @@ html,body { width:100%;height:100%;background:var(--black);
 /* ════ V13: Order & Disturbance game ════ */
 .od-area {
   position:absolute;top:36px;left:0;right:0;bottom:148px;
-  display:flex;align-items:flex-start;justify-content:center;
-  gap:18px;padding:8px 14px;z-index:5;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(18px,3vw,64px);padding:8px 14px;z-index:5;overflow:hidden;
 }
 .od-params {
   display:flex;flex-direction:row;gap:16px;align-items:flex-start;
@@ -1293,16 +1293,16 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 #od-canvas {
   display:block;border:1px solid rgba(0,0,0,0.1);background:#fff;
-  width:min(400px,52vw);height:min(400px,52vw);
+  width:min(620px,30vw,60vh);height:min(620px,30vw,60vh);
 }
-.od-actions { display:flex;gap:8px;width:min(400px,52vw); }
+.od-actions { display:flex;gap:8px;width:min(620px,30vw,60vh); }
 .od-save-btn {
   font-family:'DM Sans',sans-serif;font-size:15px;padding:7px 16px;
   background:var(--accent2,#0047ad);color:var(--black);border:none;cursor:pointer;
 }
 .od-save-btn:hover { opacity:0.85; }
 .od-versions {
-  display:flex;flex-direction:column;gap:4px;width:min(400px,52vw);
+  display:flex;flex-direction:column;gap:4px;width:min(620px,30vw,60vh);
   max-height:90px;overflow-y:auto;
 }
 .od-ver-item {
@@ -1340,7 +1340,7 @@ html,body { width:100%;height:100%;background:var(--black);
 .appr-title span { font-weight:500; }
 .appr-sub {
   font-size:13px;font-weight:300;color:rgba(0,0,0,0.5);
-  text-align:center;margin-bottom:24px;max-width:440px;line-height:1.55;
+  text-align:center;margin-bottom:24px;max-width:min(640px,90vw);line-height:1.55;
 }
 .appr-works {
   display:flex;gap:28px;align-items:flex-start;justify-content:center;
@@ -1409,7 +1409,7 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .od-inspire-caption {
   font-size:12px;font-weight:300;color:rgba(0,0,0,0.5);
-  text-align:center;max-width:420px;line-height:1.55;min-height:20px;
+  text-align:center;max-width:min(600px,80vw);line-height:1.55;min-height:20px;
 }
 
 /* Reference button in studio */
@@ -1435,12 +1435,12 @@ html,body { width:100%;height:100%;background:var(--black);
 .mref-title { font-size:clamp(22px,3.5vw,32px);font-weight:300;color:#0a0a0a;margin-bottom:8px; }
 .mref-sub {
   font-size:17.5px;font-weight:300;color:rgba(0,0,0,0.5);
-  text-align:center;max-width:480px;line-height:1.55;margin-bottom:28px;
+  text-align:center;max-width:min(680px,85vw);line-height:1.55;margin-bottom:28px;
 }
 .mref-works { display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:28px; }
-.mref-work { display:flex;flex-direction:column;align-items:center;gap:10px;width:290px; }
+.mref-work { display:flex;flex-direction:column;align-items:center;gap:10px;width:min(420px,34vw); }
 .mref-img-box {
-  width:290px;height:290px;border:1px solid rgba(0,0,0,0.12);background:#fff;
+  width:min(420px,34vw);height:min(420px,34vw);border:1px solid rgba(0,0,0,0.12);background:#fff;
   display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;
 }
 .mref-img { width:100%;height:100%;object-fit:contain; }
@@ -1472,7 +1472,7 @@ html,body { width:100%;height:100%;background:var(--black);
 .trm-canvas-wrap { display:flex;flex-direction:column;align-items:center;gap:12px; }
 #trm-canvas {
   display:block;border:1px solid rgba(0,0,0,0.12);background:#fff;
-  width:min(360px,46vh,70vw);height:min(360px,46vh,70vw);
+  width:min(560px,52vh,50vw);height:min(560px,52vh,50vw);
 }
 .trm-title {
   font-family:'DM Mono',monospace;font-size:13px;letter-spacing:0.04em;
@@ -1480,7 +1480,7 @@ html,body { width:100%;height:100%;background:var(--black);
 }
 .trm-prompt {
   font-size:14px;font-weight:300;color:rgba(0,0,0,0.5);
-  text-align:center;max-width:420px;line-height:1.55;
+  text-align:center;max-width:min(600px,80vw);line-height:1.55;
 }
 
 /* Large Morellet reference display — same slot/pattern as the Molnár chapters'
